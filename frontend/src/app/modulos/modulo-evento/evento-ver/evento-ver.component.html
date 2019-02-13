@@ -1,0 +1,33 @@
+<br>
+  <div>
+    <div>
+      <a routerLink="/usuario/crearEvento">
+        <button> Crear Evento</button>
+      </a>
+    </div>
+    <br>
+    <div>
+      <table style="width: 80%">
+        <tr>
+          <h3>Eventos</h3>
+        </tr>
+        <tr>
+          <th> Nombre</th>
+          <th> Lugar </th>
+          <th> Fecha </th>
+          <th>Accion</th>
+        </tr>
+        <tr *ngFor="let evento  of eventos">
+          <td>{{evento.nombre}}</td>
+          <td>{{evento.lugar}}</td>
+          <td>{{evento.fecha}}</td>
+          <td>
+            <a [routerLink]="['/usuario','actualizarEvento',evento.id]">
+              <button>Actualizar</button>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+

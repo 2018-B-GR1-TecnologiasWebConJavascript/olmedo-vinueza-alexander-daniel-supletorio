@@ -1,0 +1,13 @@
+<br>
+<div>
+  <h3>{{nombreEvento}}</h3>
+</div>
+<div  >
+  <div id="bloque" *ngFor="let auto of autos">
+    <app-lista-autos
+      [autoAux]="auto"
+    >
+    </app-lista-autos>
+  </div>
+</div>
+

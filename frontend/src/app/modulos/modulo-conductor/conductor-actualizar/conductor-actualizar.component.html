@@ -1,0 +1,8 @@
+<div *ngIf="conductorAActualizar">
+  <app-form-conductor
+    [conductorAux]="conductorAActualizar"
+    [nombreButtonAux]="'Actualizar'"
+    (formularioValido)="actualizarConductor($event)"
+  >
+  </app-form-conductor>
+</div>

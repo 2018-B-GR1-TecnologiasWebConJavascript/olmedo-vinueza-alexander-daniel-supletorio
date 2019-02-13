@@ -1,0 +1,42 @@
+<div>
+  <a routerLink="/usuario/crearAuto">
+    <button>Crear Auto</button>
+  </a>
+  <br>
+  <div>
+    <table>
+      <tr>
+        <h3>Autos</h3>
+      </tr>
+      <tr>
+        <th> Chasis</th>
+        <th> Marca </th>
+        <th> Color Uno</th>
+        <th> Color Dos</th>
+        <th> Nombre del modelo</th>
+        <th> Año</th>
+        <th> Conductor</th>
+      </tr>
+      <tr *ngFor="let auto  of autos">
+        <td>{{auto.chasis}}</td>
+        <td>{{auto.nombreMarca}}</td>
+        <td>{{auto.colorUno}}</td>
+        <td>{{auto.colorDos}}</td>
+        <td>{{auto.nombreModelo}}</td>
+        <td>{{auto.anio}}</td>
+        <div *ngIf="auto.idConductor">
+          <td>{{auto.idConductor.nombres}}</td>
+        </div>
+        <div *ngIf="!auto.idConductor">
+          <td></td>
+        </div>
+        <th>
+          <a [routerLink]="['/usuario','actualizarAuto',auto.id]">
+            <button>Actualizar</button>
+          </a>
+          <button (click)="eliminarAuto(auto.id)" >Eliminar</button>
+        </th>
+      </tr>
+    </table>
+  </div>
+</div>

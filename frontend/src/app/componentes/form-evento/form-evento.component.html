@@ -1,0 +1,28 @@
+<div >
+  <form #formularioEvento="ngForm"
+        novalidate
+        (submit)="emitirFormulario(formularioEvento)">
+
+    <div>
+      <input id="nombreEvento" type="text" required name="nombreEvento"
+             placeholder="Nombre"
+             [(ngModel)]="evento.nombre">
+    </div>
+    <div>
+      <input id="lugar" type="text" required name="lugar"
+             placeholder="Lugar"
+             [(ngModel)]="evento.lugar">
+    </div>
+    <div>
+      <input id="fecha" type="date" required name="fecha"
+             placeholder="fecha del evento"
+             [(ngModel)]="evento.fecha">
+    </div>
+    <div>
+      <button [disabled]="formularioEvento.invalid">
+        {{nombreButton}}
+      </button>
+    </div>
+  </form>
+
+</div>

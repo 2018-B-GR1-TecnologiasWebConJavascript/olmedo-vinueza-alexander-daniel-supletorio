@@ -1,0 +1,46 @@
+<div >
+  <form #formularioConductor="ngForm"
+        novalidate
+        (submit)="emitirFormulario(formularioConductor)">
+    <div>
+      <input id="nombres" type="text" required name="nombres"
+             placeholder="Nombres del conductor"
+             [(ngModel)]="conductor.nombres">
+    </div>
+    <div>
+      <input id="apellidos" type="text" required name="apellidos"
+             placeholder="Apellidos del conductor" maxlength="30"
+             [(ngModel)]="conductor.apellidos">
+    </div>
+    <div>
+      <input id="fecha" type="date" name="fecha"
+             placeholder="Fecha de nacimiento" maxlength="12"
+             [(ngModel)]="conductor.fechaNacimiento">
+    </div>
+    <div>
+      <input id="numeroAutos" type="number" name="numeroAutos"
+             placeholder="Número de autos"
+             [(ngModel)]="conductor.numeroAutos">
+    </div>
+
+    <div>
+      <label for="licenciaValida">Licencia Valida</label>
+      <div>
+        <input id="licenciaValida" type="radio" name="licenciaValida" [value]="true"
+               [(ngModel)]="conductor.licenciaValida"> Si
+      </div>
+      <div>
+        <input id="licenciaValida1" type="radio" name="licenciaValida1" [value]="false"
+               placeholder="Tiene seguro" maxlength="12"
+               [(ngModel)]="conductor.licenciaValida"> No
+      </div>
+
+    </div>
+    <div>
+      <button [disabled]="formularioConductor.invalid">
+        {{nombreButton}}
+      </button>
+    </div>
+  </form>
+
+</div>

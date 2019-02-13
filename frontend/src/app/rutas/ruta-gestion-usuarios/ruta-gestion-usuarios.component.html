@@ -1,0 +1,71 @@
+<h3>Gestion Usuarios</h3>
+<br>
+<div>
+  <span class="ui-fluid ui-float-label">
+          <input id="search" name="search" type="search" pInputText [(ngModel)]="elementoABuscar">
+          <label for="search">Buscar nombre o correo</label>
+        </span>
+  <span class="p-justify-end ui-inputgroup">
+
+    <div>
+      <button pButton type="button" label="Buscar" (click)="buscar()"></button>
+    </div>
+    <div>
+      <button pButton class="ui-button-secondary" type="button" label="Reset" (click)="reset()"></button>
+    </div>
+  </span>
+</div>
+<br>
+<p-table [value]="usuarios">
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let columna of columnas">
+        {{columna.header}}
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-usuario>
+    <tr>
+      <td *ngFor="let columna of columnas">
+
+        <div *ngIf="columna.field==='id'">
+
+          <div *ngIf="columna.header=='Identificador'">
+            {{usuario[columna.field]}}
+          </div>
+
+          <div *ngIf="columna.header=='Acciones'">
+
+            <button pButton
+                    label="Eliminar"
+                    class="ui-button-danger"
+                    (click)="eliminar(usuario)">
+
+            </button>
+
+            <a [routerLink]="['/menu','actualizar-usuario',usuario.id]">
+              <button pButton
+                      label="Actualizar"
+                      class="ui-button-info">
+              </button>
+            </a>
+
+          </div>
+
+        </div>
+
+        <div *ngIf="columna.field!=='id'">
+
+          {{usuario[columna.field]}}
+
+        </div>
+
+
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+

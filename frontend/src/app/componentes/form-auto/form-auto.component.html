@@ -1,0 +1,76 @@
+<div >
+  <form #formularioAuto="ngForm"
+        novalidate
+        (submit)="emitirFormulario(formularioAuto)">
+
+    <div>
+      <input id="chasis" type="number" required name="chasis"
+             placeholder="Chasis"
+             [(ngModel)]="auto.chasis">
+    </div>
+    <div>
+      <input id="nombreMarca" type="text" required name="nombreMarca"
+             placeholder="Marca"
+             [(ngModel)]="auto.nombreMarca">
+    </div>
+    <div>
+      <input id="colorUno" type="text" required name="colorUno"
+             placeholder="Color 1"
+             [(ngModel)]="auto.colorUno">
+    </div>
+    <div>
+      <input id="colorDos" type="text" required name="colorDos"
+             placeholder="Color 2"
+             [(ngModel)]="auto.colorDos">
+    </div>
+    <div>
+      <input id="nombreModelo" type="text" required name="nombreModelo"
+             placeholder="Modelo"
+             [(ngModel)]="auto.nombreModelo">
+    </div>
+    <div>
+      <input id="anio" type="number" required name="anio"
+             placeholder="Año"
+             [(ngModel)]="auto.anio">
+    </div>
+    <div *ngIf="auto.idConductor">
+      <input id="idConductor" type="text" name="idConductor"
+             [disabled]="true"
+             [(ngModel)]="auto.idConductor">
+    </div>
+    <div *ngIf="!auto.idConductor">
+      <input id="idConductor2" type="text" name="idConductor2"
+             placeholder="Seleccione el conductor"
+             [disabled]="true"
+             [(ngModel)]="auto.idConductor">
+    </div>
+    <div>
+      <button [disabled]="formularioAuto.invalid">
+        {{nombreButton}}
+      </button>
+    </div>
+  </form>
+  <div>
+    <h3>Conductores</h3>
+    <select [(ngModel)]="idConductorAux" (mouseup)="agregarAuto()">
+      <option>  </option>
+      <option *ngFor="let conductor of conductores">{{conductor.id}}</option>
+    </select>
+  </div>
+</div>
+
+<div>
+  <table>
+    <tr>
+      <th>Id Conductor</th>
+      <th>Nombre Conductor</th>
+      <th>Apellido Conductor</th>
+    </tr>
+    <tr *ngFor="let conductor of conductores">
+      <td>{{conductor.id}}</td>
+      <td>{{conductor.nombres}}</td>
+      <td>{{conductor.apellidos}}</td>
+    </tr>
+  </table>
+</div>
+

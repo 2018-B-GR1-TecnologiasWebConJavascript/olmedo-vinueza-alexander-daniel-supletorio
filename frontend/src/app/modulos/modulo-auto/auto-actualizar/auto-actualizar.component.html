@@ -1,0 +1,8 @@
+<div *ngIf="autoAActualizar">
+  <app-form-auto
+    [autoAux]="autoAActualizar"
+    [nombreButtonAux]="'Actualizar'"
+    (formularioValido)="actualizarAuto($event)"
+  >
+  </app-form-auto>
+</div>
