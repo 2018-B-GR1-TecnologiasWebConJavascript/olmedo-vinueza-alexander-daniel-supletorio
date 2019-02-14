@@ -3,6 +3,7 @@ import {AuthService} from "../../servicios/rest/auth.service";
 import {Router} from "@angular/router";
 import {UsuarioRestService} from "../../servicios/rest/usuario-rest.service";
 import {first} from "rxjs/operators";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-ruta-login',
@@ -11,65 +12,57 @@ import {first} from "rxjs/operators";
 })
 export class RutaLoginComponent implements OnInit {
 
-  usuario = {
-    correo: '',
-    password: ''
-  };
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
 
   constructor(
+    private readonly formBuilder: FormBuilder,
     private readonly _authService: AuthService,
     private readonly _usuarioService: UsuarioRestService,
     private readonly _router: Router) {
   }
 
   ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      correo: ['', [
+        Validators.required,
+        Validators.email
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).*$/i),
+        Validators.minLength(8),
+        Validators.maxLength(16),
+      ]]
+    });
   }
 
-  login() {
+  get f() {
+    return this.loginForm.controls;
+  }
 
-    this._authService.login(this.usuario.correo,this.usuario.password)
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this._authService.login(this.f.correo.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {
+          alert('Usuario logueado correctamente');
           this._router.navigate(['/']);
-        }, error => {
+        },
+        error => {
+          this.loading = false;
+          alert('Verifique el usuario y la contraseña');
           console.log(error)
-        }
-      )
-
-    // const respuestaLogin$ = this._authService
-    //   .login(
-    //     this.usuario.correo,
-    //     this.usuario.password
-    //   );
-    //
-    // respuestaLogin$
-    //   .subscribe(
-    //     (usuario) => {
-    //       this._authService.usuario = usuario;
-    //       this._usuarioService.findRolPorUsuario(
-    //         usuario.id
-    //       ).subscribe(
-    //         (roles) => {
-    //           this._authService.roles = roles;
-    //         }, (error) => {
-    //           console.log(error)
-    //         }
-    //       );
-    //       const url = [
-    //         '/',
-    //         'usuario'
-    //       ];
-    //       alert('Login exitoso');
-    //       this._router.navigate(url);
-    //       console.log(usuario);
-    //     },
-    //     (error) => {
-    //       alert('Verifique el usuario y la contraseña');
-    //       console.error(error);
-    //     }
-    //   );
-
+        });
   }
-
 }
