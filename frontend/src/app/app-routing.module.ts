@@ -17,8 +17,13 @@ import {EventoCrearComponent} from "./modulos/modulo-evento/evento-crear/evento-
 import {EventoActualizarComponent} from "./modulos/modulo-evento/evento-actualizar/evento-actualizar.component";
 import {EventoVisualizarComponent} from "./modulos/modulo-evento/evento-visualizar/evento-visualizar.component";
 import {EventoVerAutoComponent} from "./modulos/modulo-evento/evento-ver-auto/evento-ver-auto.component";
+import {RutaHomeComponent} from "./rutas/ruta-home/ruta-home.component";
 
 const routes: Routes = [
+  {
+    path: '',
+    component: RutaHomeComponent
+  },
   {
     path: 'login',
     component: RutaLoginComponent
@@ -53,7 +58,6 @@ const routes: Routes = [
       {
         path: 'gestionConductor',
         component: ConductorVisualizarComponent,
-
       },
       {
         path: 'crearConductor',
@@ -118,6 +122,8 @@ const routes: Routes = [
     //   }
     // ]
   },
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

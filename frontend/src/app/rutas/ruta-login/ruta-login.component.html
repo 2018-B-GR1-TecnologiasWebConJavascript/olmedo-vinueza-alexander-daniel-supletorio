@@ -17,7 +17,7 @@
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
             <div *ngIf="f.password.errors.required">Este campo no puede estar vacío</div>
             <div *ngIf="f.password.errors.minlength || f.password.errors.maxlength">Debe tener entre 8 y 16 caracteres</div>
-            <div *ngIf="f.password.errors.pattern">Debe tener al menos:<br/>1 letra mayúscula<br/>1 letra minúscula<br/>1 caracter especial<br/>1 número</div>
+            <div *ngIf="f.password.errors.pattern">Debe tener al menos:<br/>    1 letra mayúscula<br/>    1 letra minúscula<br/>    1 caracter especial<br/>    1 número</div>
           </div>
         </div>
         <div class="form-group">

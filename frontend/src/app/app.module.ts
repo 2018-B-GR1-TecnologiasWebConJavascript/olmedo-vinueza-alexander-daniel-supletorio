@@ -37,6 +37,7 @@ import {EventoActualizarComponent} from './modulos/modulo-evento/evento-actualiz
 import {EventoVisualizarComponent} from './modulos/modulo-evento/evento-visualizar/evento-visualizar.component';
 import {EventoVerAutoComponent} from './modulos/modulo-evento/evento-ver-auto/evento-ver-auto.component';
 import {ListaAutosComponent} from './componentes/lista-autos/lista-autos.component';
+import { RutaHomeComponent } from './rutas/ruta-home/ruta-home.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {ListaAutosComponent} from './componentes/lista-autos/lista-autos.compone
     EventoActualizarComponent,
     EventoVisualizarComponent,
     EventoVerAutoComponent,
-    ListaAutosComponent
+    ListaAutosComponent,
+    RutaHomeComponent
   ],
   imports: [
     BrowserModule,
