@@ -9,7 +9,9 @@ import {AutoRestService} from "../../../servicios/rest/auto-rest.service";
 })
 export class AutoVisualizarComponent implements OnInit {
 
-  autos: Auto[] = [];
+  autos: Auto[];
+  autosAux: Auto[];
+  elementoABuscar : string;
 
   constructor(
     private readonly _autoRest: AutoRestService
@@ -20,7 +22,10 @@ export class AutoVisualizarComponent implements OnInit {
   ngOnInit() {
     const autos$ = this._autoRest.findAll();
     autos$.subscribe(
-      (autos) => this.autos = autos
+      (autos) => {
+        this.autos = autos;
+        this.autosAux = this.autos
+      }
     );
   }
 
@@ -30,5 +35,17 @@ export class AutoVisualizarComponent implements OnInit {
       (auto) =>
         this.autos.splice(this.autos.findIndex( (m)=> m.id === auto.id),1)
     );
+  }
+
+  buscar() {
+    if(this.elementoABuscar!=""){
+      this.autos = this.autosAux.filter(auto =>{
+        return auto.chasis.toString().toLowerCase().includes(this.elementoABuscar.toLowerCase())
+          || auto.nombreMarca.toLowerCase().includes(this.elementoABuscar.toLowerCase())
+          || auto.nombreModelo.toLowerCase().includes(this.elementoABuscar.toLowerCase())
+      })
+    } else {
+      this.autos = this.autosAux;
+    }
   }
 }

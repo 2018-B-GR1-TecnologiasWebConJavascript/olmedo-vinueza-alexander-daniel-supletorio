@@ -5,6 +5,18 @@
   <br>
   <br>
   <div>
+  <span class="ui-fluid ui-float-label">
+          <input id="search" name="search" type="search" pInputText [(ngModel)]="elementoABuscar">
+          <label for="search">Buscar chasis, marca o modelo</label>
+        </span>
+    <span class="p-justify-end ui-inputgroup">
+
+    <div>
+      <button pButton type="button" label="Buscar" (click)="buscar()"></button>
+    </div>
+  </span>
+  </div>
+  <div>
     <table class="table">
       <tr>
         <h3>Autos</h3>
@@ -17,6 +29,7 @@
         <th>Nombre del modelo</th>
         <th>Año</th>
         <th>Conductor</th>
+        <th>Acciones</th>
       </tr>
       <tr *ngFor="let auto  of autos">
         <td>{{auto.chasis}}</td>
@@ -29,13 +42,13 @@
           <td>{{auto.idConductor.nombres}}</td>
         </div>
         <div *ngIf="!auto.idConductor">
-          <td></td>
+          <td>--</td>
         </div>
         <th>
           <a [routerLink]="['/usuario','actualizarAuto',auto.id]">
-            <button>Actualizar</button>
+            <button class="btn btn-info">Actualizar</button>
           </a>
-          <button (click)="eliminarAuto(auto.id)" >Eliminar</button>
+          <button class="btn btn-danger" (click)="eliminarAuto(auto.id)" >Eliminar</button>
         </th>
       </tr>
     </table>
