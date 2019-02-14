@@ -50,8 +50,16 @@ export class FormConductorComponent implements OnInit {
       licenciaValida: new FormControl()
     });
 
+    if (this.conductorAux){
+      this.conductorForm.get('nombres').setValue(this.conductorAux.nombres);
+      this.conductorForm.get('apellidos').setValue(this.conductorAux.apellidos);
+      this.conductorForm.get('fechaNacimiento').setValue(this.conductorAux.fechaNacimiento);
+      this.conductorForm.get('numeroAutos').setValue(this.conductorAux.numeroAutos);
+      this.conductorForm.patchValue({licenciaValida:this.conductorAux.licenciaValida})
+    }
+
     this.nombreButton = this.nombreButtonAux;
-    this.conductorForm.patchValue({licenciaValida:false})
+
 
   }
 

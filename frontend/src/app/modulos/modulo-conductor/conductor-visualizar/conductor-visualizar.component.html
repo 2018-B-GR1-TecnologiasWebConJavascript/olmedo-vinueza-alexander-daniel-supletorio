@@ -1,6 +1,6 @@
 <div>
   <a routerLink="/usuario/crearConductor">
-    <button>Crear Conductor</button>
+    <button class="btn btn-success">Crear Conductor</button>
   </a>
   <br>
   <br>
@@ -25,9 +25,9 @@
         <td>{{conductor.licenciaValida}}</td>
         <td>
           <a [routerLink]="['/usuario','actualizarConductor',conductor.id]">
-            <button>Actualizar</button>
+            <button class="btn btn-info">Actualizar</button>
           </a>
-          <button (click)="eliminarConductor(conductor.id)" >Eliminar</button>
+          <button class="btn btn-danger" (click)="eliminarConductor(conductor.id)" >Eliminar</button>
         </td>
       </tr>
     </table>

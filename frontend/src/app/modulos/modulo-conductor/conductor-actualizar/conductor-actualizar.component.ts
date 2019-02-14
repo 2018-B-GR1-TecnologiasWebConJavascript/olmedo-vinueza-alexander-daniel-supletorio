@@ -34,6 +34,7 @@ export class ConductorActualizarComponent implements OnInit {
   }
 
   actualizarConductor(conductorAc:Conductor) {
+    conductorAc.id = this.conductorAActualizar.id;
     const evento$ = this._conductorRest.updateOneById(conductorAc);
     evento$.subscribe(
       (evet) => this._route.navigate((['/usuario/gestionConductor'])),

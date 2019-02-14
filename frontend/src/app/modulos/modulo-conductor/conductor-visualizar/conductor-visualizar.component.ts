@@ -21,7 +21,6 @@ export class ConductorVisualizarComponent implements OnInit {
     const conductores$ = this._conductorRest.findAll();
     conductores$.subscribe(
       (conductores) => {
-        console.log(conductores);
         this.conductores = conductores.filter(conductor =>{
           return conductor.usuario.id == this._authService.currentUserValue.id
         });
