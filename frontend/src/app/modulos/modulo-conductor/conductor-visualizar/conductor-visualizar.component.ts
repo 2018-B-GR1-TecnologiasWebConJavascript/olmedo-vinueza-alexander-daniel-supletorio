@@ -10,7 +10,7 @@ import {AuthService} from "../../../servicios/rest/auth.service";
 })
 export class ConductorVisualizarComponent implements OnInit {
 
-  conductores: Conductor[] = []
+  conductores: Conductor[] = [];
 
   constructor(
     private readonly _conductorRest: ConductorRestService,

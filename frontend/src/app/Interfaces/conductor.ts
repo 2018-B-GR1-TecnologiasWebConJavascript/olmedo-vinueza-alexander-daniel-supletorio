@@ -1,11 +1,11 @@
 import {Usuario} from './usuario';
 
 export interface Conductor {
-  id: number | string;
+  id?: number;
   nombres: string;
   apellidos: string;
   fechaNacimiento: string;
   numeroAutos: number;
   licenciaValida: boolean;
-  idUsuario: number | string | Usuario
+  usuario?: Usuario;
 }

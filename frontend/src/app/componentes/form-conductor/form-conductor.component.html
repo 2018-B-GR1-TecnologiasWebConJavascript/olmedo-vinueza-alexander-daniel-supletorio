@@ -1,46 +1,47 @@
-<div >
-  <form #formularioConductor="ngForm"
-        novalidate
-        (submit)="emitirFormulario(formularioConductor)">
-    <div>
-      <input id="nombres" type="text" required name="nombres"
-             placeholder="Nombres del conductor"
-             [(ngModel)]="conductor.nombres">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3>Conductor</h3>
+      <form [formGroup]="conductorForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nombres">Nombres</label>
+          <input id="nombres" formControlName="nombres" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombres.errors }" />
+          <div *ngIf="submitted && f.nombres.errors" class="invalid-feedback">
+            <div *ngIf="f.nombres.errors.required">Este campo no puede estar vacío</div>
+            <div *ngIf="f.nombres.errors.pattern">Solo debe contener letras y espacios</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="apellidos">Apellidos</label>
+          <input id="apellidos" formControlName="apellidos" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellidos.errors }"/>
+          <div *ngIf="submitted && f.apellidos.errors" class="invalid-feedback">
+            <div *ngIf="f.apellidos.errors.required">Este campo no puede estar vacío</div>
+            <div *ngIf="f.apellidos.errors.pattern">Solo debe contener letras y espacios</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fechaNacimiento">Fecha de nacimiento</label>
+          <input id="fechaNacimiento" type="date" formControlName="fechaNacimiento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fechaNacimiento.errors }" />
+          <div *ngIf="submitted && f.fechaNacimiento.errors" class="invalid-feedback">
+            <div *ngIf="f.fechaNacimiento.errors.required">Este campo no puede estar vacío</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="numeroAutos">Número de Autos</label>
+          <input id="numeroAutos" type="number" formControlName="numeroAutos" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.numeroAutos.errors }" />
+          <div *ngIf="submitted && f.numeroAutos.errors" class="invalid-feedback">
+            <div *ngIf="f.numeroAutos.errors.required">Este campo no puede estar vacío</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="checkbox" id="licenciaValida" formControlName="licenciaValida" name="licenciaValida">
+          <label for="licenciaValida">Licencia Válida</label>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary btn-block">{{nombreButton}}</button>
+        </div>
+      </form>
     </div>
-    <div>
-      <input id="apellidos" type="text" required name="apellidos"
-             placeholder="Apellidos del conductor" maxlength="30"
-             [(ngModel)]="conductor.apellidos">
-    </div>
-    <div>
-      <input id="fecha" type="date" name="fecha"
-             placeholder="Fecha de nacimiento" maxlength="12"
-             [(ngModel)]="conductor.fechaNacimiento">
-    </div>
-    <div>
-      <input id="numeroAutos" type="number" name="numeroAutos"
-             placeholder="Número de autos"
-             [(ngModel)]="conductor.numeroAutos">
-    </div>
-
-    <div>
-      <label for="licenciaValida">Licencia Valida</label>
-      <div>
-        <input id="licenciaValida" type="radio" name="licenciaValida" [value]="true"
-               [(ngModel)]="conductor.licenciaValida"> Si
-      </div>
-      <div>
-        <input id="licenciaValida1" type="radio" name="licenciaValida1" [value]="false"
-               placeholder="Tiene seguro" maxlength="12"
-               [(ngModel)]="conductor.licenciaValida"> No
-      </div>
-
-    </div>
-    <div>
-      <button [disabled]="formularioConductor.invalid">
-        {{nombreButton}}
-      </button>
-    </div>
-  </form>
-
+  </div>
 </div>
+

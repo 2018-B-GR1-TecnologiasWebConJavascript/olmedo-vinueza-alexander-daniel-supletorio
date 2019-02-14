@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Conductor} from "../../interfaces/conductor";
 import {AuthService} from "../../servicios/rest/auth.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Usuario} from "../../interfaces/usuario";
 
 @Component({
   selector: 'app-form-conductor',
@@ -9,7 +11,9 @@ import {AuthService} from "../../servicios/rest/auth.service";
 })
 export class FormConductorComponent implements OnInit {
 
-  conductor = <Conductor>{};
+  conductorForm: FormGroup;
+  loading = false;
+  submitted = false;
   nombreButton: string = " ";
 
   @Input()
@@ -22,18 +26,56 @@ export class FormConductorComponent implements OnInit {
   formularioValido = new EventEmitter();
 
   constructor(
-    private readonly _authService: AuthService
+    private readonly _authService: AuthService,
+    private readonly _formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
+
+    this.conductorForm = this._formBuilder.group({
+      nombres: ['', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z\s]*$/i)
+      ]],
+      apellidos: ['', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z\s]*$/i)
+      ]],
+      fechaNacimiento: ['', [
+        Validators.required
+      ]],
+      numeroAutos: ['',[
+        Validators.required,
+      ]],
+      licenciaValida: new FormControl()
+    });
+
     this.nombreButton = this.nombreButtonAux;
-    if(this.conductorAux != null)
-      this.conductor = JSON.parse(JSON.stringify(this.conductorAux));
-      // this.conductor.idUsuario = this._authService.usuario.id;
+    this.conductorForm.patchValue({licenciaValida:false})
+
   }
 
-  emitirFormulario(){
-    this.formularioValido.emit(this.conductor);
+  get f() {
+    return this.conductorForm.controls;
+  }
+
+  onSubmit() {
+
+    this.submitted = true;
+
+    if (this.conductorForm.invalid) {
+      return;
+    }
+
+    let conductor: Conductor = {
+      nombres: <string> this.f.nombres.value,
+      apellidos: <string> this.f.apellidos.value,
+      fechaNacimiento: <string> this.f.fechaNacimiento.value,
+      numeroAutos: <number> this.f.numeroAutos.value,
+      licenciaValida: this.f.licenciaValida.value
+    };
+    this.loading = true;
+    this.formularioValido.emit(conductor);
   }
 
 }
