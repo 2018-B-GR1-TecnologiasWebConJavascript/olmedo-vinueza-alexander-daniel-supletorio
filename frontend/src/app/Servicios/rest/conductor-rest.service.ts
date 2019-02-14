@@ -45,15 +45,16 @@ export class ConductorRestService {
   updateOneById(conductor: Conductor) {
     const url = environment.url + this.nombreModelo
       + '/' + conductor.id;
+    console.log(url);
     const objeto = {
       nombres: conductor.nombres,
       apellidos: conductor.apellidos,
       fechaNacimiento: conductor.fechaNacimiento,
       numeroAutos: conductor.numeroAutos,
       licenciaValida: conductor.licenciaValida
-    }
+    };
     return this._httpClient
-      .put(url, objeto)
+      .patch(url, objeto)
       .pipe(map(r => <Conductor> r));
   }
 }

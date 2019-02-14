@@ -10,7 +10,9 @@ import {AuthService} from "../../../servicios/rest/auth.service";
 })
 export class ConductorVisualizarComponent implements OnInit {
 
-  conductores: Conductor[] = [];
+  conductores: Conductor[];
+  conductoresAux: Conductor[];
+  elementoABuscar: string;
 
   constructor(
     private readonly _conductorRest: ConductorRestService,
@@ -24,6 +26,7 @@ export class ConductorVisualizarComponent implements OnInit {
         this.conductores = conductores.filter(conductor =>{
           return conductor.usuario.id == this._authService.currentUserValue.id
         });
+        this.conductoresAux = this.conductores;
       }
     );
   }
@@ -35,6 +38,16 @@ export class ConductorVisualizarComponent implements OnInit {
         this.conductores.splice(this.conductores.findIndex( (m)=> m.id === conductor.id),1),
       (error) => alert("No se pudo eliminar el conductor "+ id)
     );
+  }
+
+  buscar() {
+    if(this.elementoABuscar!=""){
+      this.conductores = this.conductoresAux.filter(conductor =>{
+        return conductor.nombres.toLowerCase().includes(this.elementoABuscar.toLowerCase()) || conductor.apellidos.toLowerCase().includes(this.elementoABuscar.toLowerCase())
+      })
+    } else {
+      this.conductores = this.conductoresAux;
+    }
   }
 
 }

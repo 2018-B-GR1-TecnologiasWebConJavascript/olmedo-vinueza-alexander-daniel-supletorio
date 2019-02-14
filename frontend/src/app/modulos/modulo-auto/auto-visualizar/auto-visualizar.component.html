@@ -1,21 +1,22 @@
 <div>
   <a routerLink="/usuario/crearAuto">
-    <button>Crear Auto</button>
+    <button class="btn btn-success" >Crear Auto</button>
   </a>
   <br>
+  <br>
   <div>
-    <table>
+    <table class="table">
       <tr>
         <h3>Autos</h3>
       </tr>
       <tr>
-        <th> Chasis</th>
-        <th> Marca </th>
-        <th> Color Uno</th>
-        <th> Color Dos</th>
-        <th> Nombre del modelo</th>
-        <th> Año</th>
-        <th> Conductor</th>
+        <th>Chasis</th>
+        <th>Marca </th>
+        <th>Color Uno</th>
+        <th>Color Dos</th>
+        <th>Nombre del modelo</th>
+        <th>Año</th>
+        <th>Conductor</th>
       </tr>
       <tr *ngFor="let auto  of autos">
         <td>{{auto.chasis}}</td>
