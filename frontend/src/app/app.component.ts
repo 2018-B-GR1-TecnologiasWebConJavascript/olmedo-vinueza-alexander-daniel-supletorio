@@ -55,32 +55,4 @@ export class AppComponent {
     this._router.navigate(['/login']);
   }
 
-  gestionUsuario() {
-    console.log(this._authService.roles);
-    try {
-      if (this._authService.roles.some((rol) => {
-        return rol.nombre === "Administrador"
-      })) {
-        const url = [
-          '/',
-          'menu',
-          'gestion-usuarios'
-        ];
-        this._router.navigate(url);
-      } else {
-        const url = [
-          '/',
-          'login'
-        ];
-        this._router.navigate(url);
-      }
-    } catch (e) {
-      const url = [
-        '/',
-        'login'
-      ];
-      this._router.navigate(url);
-    }
-
-  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Conductor} from "../../../interfaces/conductor";
 import {ConductorRestService} from "../../../servicios/rest/conductor-rest.service";
+import {AuthService} from "../../../servicios/rest/auth.service";
 
 @Component({
   selector: 'app-conductor-visualizar',
@@ -12,13 +13,19 @@ export class ConductorVisualizarComponent implements OnInit {
   conductores: Conductor[] = []
 
   constructor(
-    private readonly _conductorRest: ConductorRestService
+    private readonly _conductorRest: ConductorRestService,
+    private readonly _authService: AuthService
   ) { }
 
   ngOnInit() {
     const conductores$ = this._conductorRest.findAll();
     conductores$.subscribe(
-      (conductores) => this.conductores = conductores
+      (conductores) => {
+        console.log(conductores);
+        this.conductores = conductores.filter(conductor =>{
+          return conductor.usuario.id == this._authService.currentUserValue.id
+        });
+      }
     );
   }
 
