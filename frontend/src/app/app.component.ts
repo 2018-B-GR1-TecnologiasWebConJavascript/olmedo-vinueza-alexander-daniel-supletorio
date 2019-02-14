@@ -13,7 +13,6 @@ import {log} from "util";
 })
 export class AppComponent {
   usuarioActual: Usuario;
-  title = 'front';
 
   constructor(
     private readonly _authService: AuthService,

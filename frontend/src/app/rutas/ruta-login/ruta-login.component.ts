@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../servicios/rest/auth.service";
 import {Router} from "@angular/router";
-import {UsuarioRestService} from "../../servicios/rest/usuario-rest.service";
 import {first} from "rxjs/operators";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
@@ -15,17 +14,15 @@ export class RutaLoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
 
   constructor(
-    private readonly formBuilder: FormBuilder,
+    private readonly _formBuilder: FormBuilder,
     private readonly _authService: AuthService,
-    private readonly _usuarioService: UsuarioRestService,
     private readonly _router: Router) {
   }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
+    this.loginForm = this._formBuilder.group({
       correo: ['', [
         Validators.required,
         Validators.email
@@ -46,7 +43,6 @@ export class RutaLoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }

@@ -3,7 +3,8 @@
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/">Home</a>
     <a class="nav-item nav-link" *ngIf="isAdmin" routerLink="/gestion-usuarios">Gestión de Usuarios</a>
-    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    <a class="nav-item nav-link" *ngIf="!usuarioActual" routerLink="/login">Login</a>
+    <a class="nav-item nav-link" *ngIf="usuarioActual" (click)="logout()">Logout</a>
   </div>
 </nav>
 <p-toolbar>
