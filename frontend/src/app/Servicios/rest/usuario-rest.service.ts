@@ -53,19 +53,19 @@ export class UsuarioRestService {
 
     return this._httpClient
       .post(url, {
-        idUsuario: idUsuario,
+        usuario_id: idUsuario,
       })
       .pipe(map(r => <Usuario>r)); // Casteo
 
   }
 
-  eliminarRol(idUsuario: number, idRol: number): Observable<any> {
+  eliminarRol(usuario_id: number, rol_id: number): Observable<any> {
     const url = environment.url + '/usuario/eliminarRol';
 
     return this._httpClient
       .post(url, {
-        idUsuario: idUsuario,
-        idRol: idRol
+        usuario_id: usuario_id,
+        rol_id: rol_id
       })
       .pipe(map(r => <any>r)); // Casteo
 
@@ -110,12 +110,12 @@ export class UsuarioRestService {
 
   }
 
-  asignarRol(idUsuario: number,
-         idRol: number): Observable<any> {
+  asignarRol(usuario_id: number,
+         rol_id: number): Observable<any> {
 
     const objetoAGuardar = {
-      usuario: idUsuario,
-      rol: idRol
+      usuario_id: usuario_id,
+      rol_id: rol_id
     };
 
     const url = environment.url + '/rolesporusuario';

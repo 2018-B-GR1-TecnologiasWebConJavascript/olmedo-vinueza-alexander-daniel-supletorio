@@ -1,6 +1,10 @@
+<h2>Actualizar Usuario</h2>
+<a class="nav-item nav-link" routerLink="/administrador">Regresar</a>
+<br>
+<br>
 <div class="p-grid">
   <div class="p-col">
-    <h1>Usuario</h1>
+    <h3>Usuario</h3>
     <table border="1">
       <tr>
         <td>Nombre</td>
@@ -18,7 +22,7 @@
 
   </div>
   <div class="p-col">
-    <h1>Roles</h1>
+    <h3>Roles</h3>
     <p *ngIf="registroRepetido">
       <p-message
         severity="warn"
@@ -55,7 +59,7 @@
     </p-table>
   </div>
   <div class="p-col">
-    <h1>Agregar Rol</h1>
+    <h3>Agregar Rol</h3>
     <p-dropdown [options]="roles" [(ngModel)]="rolSeleccionado" optionLabel="nombre"></p-dropdown>
     <button pButton
             label="Agregar"
