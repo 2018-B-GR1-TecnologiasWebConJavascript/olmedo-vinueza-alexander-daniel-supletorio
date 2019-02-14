@@ -33,15 +33,20 @@ const routes: Routes = [
     component: RutaRegistroComponent
   },
   {
-    path: 'menu',
+    path: 'administrador',
     component: RutaMenuComponent,
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'gestion-usuarios',
+      },
       {
         path: 'gestion-usuarios',
         component: RutaGestionUsuariosComponent
       },
       {
-        path: 'actualizar-usuario/:idUsuario',
+        path: 'gestion-usuarios/:idUsuario',
         component: RutaActualizarUsuarioComponent,
       },
     ]
@@ -49,7 +54,7 @@ const routes: Routes = [
   {
     path: 'usuario',
     component: UsuarioMainComponent,
-    children:[
+    children: [
       {
         path: '',
         pathMatch: 'full',
@@ -89,7 +94,7 @@ const routes: Routes = [
       },
       {
         path: 'actualizarEvento/:idEvento',
-        component:EventoActualizarComponent,
+        component: EventoActualizarComponent,
       },
       {
         path: 'eventos',
@@ -123,11 +128,12 @@ const routes: Routes = [
     // ]
   },
   // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

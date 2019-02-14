@@ -10,6 +10,7 @@ import {Usuario} from "../../interfaces/usuario";
 export class RutaGestionUsuariosComponent implements OnInit {
 
   usuarios = [];
+  usuariosAux = [];
 
   elementoABuscar: string;
 
@@ -35,6 +36,7 @@ export class RutaGestionUsuariosComponent implements OnInit {
       .subscribe(
         (usuarios: Usuario[]) => {
           this.usuarios = usuarios;
+          this.usuariosAux = usuarios
         },
         (error) => {
           console.error('Error', error);
@@ -65,15 +67,14 @@ export class RutaGestionUsuariosComponent implements OnInit {
   }
 
   buscar() {
-    this.usuarios = this.usuarios.filter(usuario =>{
-      return usuario.nombre.includes(this.elementoABuscar) || usuario.correo.includes(this.elementoABuscar)
-    })
+    if(this.elementoABuscar!=""){
+      this.usuarios = this.usuariosAux.filter(usuario =>{
+        return usuario.nombre.toLowerCase().includes(this.elementoABuscar.toLowerCase()) || usuario.correo.toLowerCase().includes(this.elementoABuscar.toLowerCase())
+      })
+    } else {
+      this.usuarios = this.usuariosAux;
+    }
   }
-
-  reset(){
-    this.ngOnInit()
-  }
-
 }
 
 
