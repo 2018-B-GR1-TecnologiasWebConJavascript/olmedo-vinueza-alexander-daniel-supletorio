@@ -38,18 +38,14 @@
         <td>{{auto.colorDos}}</td>
         <td>{{auto.nombreModelo}}</td>
         <td>{{auto.anio}}</td>
-        <div *ngIf="auto.idConductor">
-          <td>{{auto.idConductor.nombres}}</td>
-        </div>
-        <div *ngIf="!auto.idConductor">
-          <td>--</td>
-        </div>
-        <th>
+        <td *ngIf="auto.conductor">{{auto.conductor.nombres}} {{auto.conductor.apellidos}}</td>
+        <td *ngIf="!auto.conductor">--</td>
+        <td>
           <a [routerLink]="['/usuario','actualizarAuto',auto.id]">
             <button class="btn btn-info">Actualizar</button>
           </a>
           <button class="btn btn-danger" (click)="eliminarAuto(auto.id)" >Eliminar</button>
-        </th>
+        </td>
       </tr>
     </table>
   </div>

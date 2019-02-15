@@ -10,6 +10,8 @@ import {environment} from "../../../environments/environment";
 })
 export class ConductorRestService {
 
+  conductoresUsuarioActual: any;
+
   private nombreModelo: string = "/conductor";
   constructor(
     private readonly _httpClient: HttpClient

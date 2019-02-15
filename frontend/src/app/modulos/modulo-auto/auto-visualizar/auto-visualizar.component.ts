@@ -11,7 +11,7 @@ export class AutoVisualizarComponent implements OnInit {
 
   autos: Auto[];
   autosAux: Auto[];
-  elementoABuscar : string;
+  elementoABuscar : string = '';
 
   constructor(
     private readonly _autoRest: AutoRestService
@@ -25,6 +25,7 @@ export class AutoVisualizarComponent implements OnInit {
       (autos) => {
         this.autos = autos;
         this.autosAux = this.autos
+        console.log(this.autos)
       }
     );
   }

@@ -12,7 +12,7 @@ export class ConductorVisualizarComponent implements OnInit {
 
   conductores: Conductor[];
   conductoresAux: Conductor[];
-  elementoABuscar: string;
+  elementoABuscar: string = '';
 
   constructor(
     private readonly _conductorRest: ConductorRestService,
@@ -30,6 +30,7 @@ export class ConductorVisualizarComponent implements OnInit {
         this._conductorRest.conductoresUsuarioActual = this.conductoresAux;
       }
     );
+
   }
 
   eliminarConductor(id: number|string){
