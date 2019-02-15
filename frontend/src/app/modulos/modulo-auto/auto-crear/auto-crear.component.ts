@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AutoRestService} from "../../../servicios/rest/auto-rest.service";
 import {Router} from "@angular/router";
 import {Auto} from "../../../interfaces/auto";
+import {ConductorRestService} from "../../../servicios/rest/conductor-rest.service";
 
 @Component({
   selector: 'app-auto-crear',
@@ -9,13 +10,13 @@ import {Auto} from "../../../interfaces/auto";
   styleUrls: ['./auto-crear.component.css']
 })
 export class AutoCrearComponent implements OnInit {
-
   constructor(
     private readonly _autoRest: AutoRestService,
     private readonly _router: Router
   ) { }
 
   ngOnInit() {
+
   }
 
   crearAuto(auto:Auto){

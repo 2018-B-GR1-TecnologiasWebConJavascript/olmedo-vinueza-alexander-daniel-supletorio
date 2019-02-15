@@ -35,8 +35,8 @@ export class AutoActualizarComponent implements OnInit {
   }
 
   actualizarAuto(autoAc: Auto) {
-    if(autoAc.idConductor==="")
-      autoAc.idConductor = null;
+    if(autoAc.conductor==="")
+      autoAc.conductor = null;
     console.log(autoAc);
     const autoAActualizar$ = this._autoRest.updateOneById(autoAc);
     autoAActualizar$.subscribe(

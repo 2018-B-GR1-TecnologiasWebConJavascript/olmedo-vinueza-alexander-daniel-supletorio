@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Conductor} from "../../interfaces/conductor";
 import {AuthService} from "../../servicios/rest/auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Usuario} from "../../interfaces/usuario";
 
 @Component({
   selector: 'app-form-conductor',

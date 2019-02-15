@@ -27,6 +27,7 @@ export class ConductorVisualizarComponent implements OnInit {
           return conductor.usuario.id == this._authService.currentUserValue.id
         });
         this.conductoresAux = this.conductores;
+        this._conductorRest.conductoresUsuarioActual = this.conductoresAux;
       }
     );
   }

@@ -1,76 +1,71 @@
-<div >
-  <form #formularioAuto="ngForm"
-        novalidate
-        (submit)="emitirFormulario(formularioAuto)">
+<div class="container">
+  <a class="nav-item nav-link" routerLink="/usuario/gestionConductor">Regresar</a>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3>Auto</h3>
+      <form [formGroup]="autoForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="chasis">Chasis</label>
+          <input id="chasis" type="number" formControlName="chasis" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.chasis.errors }" />
+          <div *ngIf="submitted && f.chasis.errors" class="invalid-feedback">
+            <div *ngIf="f.chasis.errors.required">Este campo no puede estar vacío</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombreMarca">Marca</label>
+          <input id="nombreMarca" formControlName="nombreMarca" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombreMarca.errors }"/>
+          <div *ngIf="submitted && f.nombreMarca.errors" class="invalid-feedback">
+            <div *ngIf="f.nombreMarca.errors.required">Este campo no puede estar vacío</div>
+            <div *ngIf="f.nombreMarca.errors.pattern">Solo debe contener letras y espacios</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombreModelo">Modelo</label>
+          <input id="nombreModelo" formControlName="nombreModelo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombreModelo.errors }"/>
+          <div *ngIf="submitted && f.nombreModelo.errors" class="invalid-feedback">
+            <div *ngIf="f.nombreModelo.errors.required">Este campo no puede estar vacío</div>
+            <div *ngIf="f.nombreModelo.errors.pattern">Solo debe contener letras y espacios</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="colorUno">Color Uno</label>
+          <input id="colorUno" formControlName="colorUno" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.colorUno.errors }"/>
+          <div *ngIf="submitted && f.colorUno.errors" class="invalid-feedback">
+            <div *ngIf="f.colorUno.errors.required">Este campo no puede estar vacío</div>
+            <div *ngIf="f.colorUno.errors.pattern">Solo debe contener letras y espacios</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="colorDos">Color Dos</label>
+          <input id="colorDos" formControlName="colorDos" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.colorDos.errors }"/>
+          <div *ngIf="submitted && f.colorDos.errors" class="invalid-feedback">
+            <div *ngIf="f.colorDos.errors.required">Este campo no puede estar vacío</div>
+            <div *ngIf="f.colorDos.errors.pattern">Solo debe contener letras y espacios</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="anio">Año</label>
+          <input id="anio" type="number" min="1900" max="2099" step="1" formControlName="anio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.anio.errors }"/>
+          <div *ngIf="submitted && f.anio.errors" class="invalid-feedback">
+            <div *ngIf="f.anio.errors.required">Este campo no puede estar vacío</div>
+          </div>
+        </div>
 
-    <div>
-      <input id="chasis" type="number" required name="chasis"
-             placeholder="Chasis"
-             [(ngModel)]="auto.chasis">
+        <div class="form-group">
+          <label for="conductor">Conductor</label>
+          <select class="form-control" id="conductor" formControlName="conductor" [ngClass]="{ 'is-invalid': submitted && f.conductor.errors }">
+            <option *ngFor="let conductor of conductoresUsuarioActual" [value]="conductor.id">{{conductor.nombres}} {{conductor.apellidos}}</option>
+          </select>
+          <div *ngIf="submitted && f.conductor.errors" class="invalid-feedback">
+            <div *ngIf="f.conductor.errors.required">Este campo no puede estar vacío</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary btn-block">{{nombreButton}}</button>
+        </div>
+      </form>
     </div>
-    <div>
-      <input id="nombreMarca" type="text" required name="nombreMarca"
-             placeholder="Marca"
-             [(ngModel)]="auto.nombreMarca">
-    </div>
-    <div>
-      <input id="colorUno" type="text" required name="colorUno"
-             placeholder="Color 1"
-             [(ngModel)]="auto.colorUno">
-    </div>
-    <div>
-      <input id="colorDos" type="text" required name="colorDos"
-             placeholder="Color 2"
-             [(ngModel)]="auto.colorDos">
-    </div>
-    <div>
-      <input id="nombreModelo" type="text" required name="nombreModelo"
-             placeholder="Modelo"
-             [(ngModel)]="auto.nombreModelo">
-    </div>
-    <div>
-      <input id="anio" type="number" required name="anio"
-             placeholder="Año"
-             [(ngModel)]="auto.anio">
-    </div>
-    <div *ngIf="auto.idConductor">
-      <input id="idConductor" type="text" name="idConductor"
-             [disabled]="true"
-             [(ngModel)]="auto.idConductor">
-    </div>
-    <div *ngIf="!auto.idConductor">
-      <input id="idConductor2" type="text" name="idConductor2"
-             placeholder="Seleccione el conductor"
-             [disabled]="true"
-             [(ngModel)]="auto.idConductor">
-    </div>
-    <div>
-      <button [disabled]="formularioAuto.invalid">
-        {{nombreButton}}
-      </button>
-    </div>
-  </form>
-  <div>
-    <h3>Conductores</h3>
-    <select [(ngModel)]="idConductorAux" (mouseup)="agregarAuto()">
-      <option>  </option>
-      <option *ngFor="let conductor of conductores">{{conductor.id}}</option>
-    </select>
   </div>
-</div>
-
-<div>
-  <table>
-    <tr>
-      <th>Id Conductor</th>
-      <th>Nombre Conductor</th>
-      <th>Apellido Conductor</th>
-    </tr>
-    <tr *ngFor="let conductor of conductores">
-      <td>{{conductor.id}}</td>
-      <td>{{conductor.nombres}}</td>
-      <td>{{conductor.apellidos}}</td>
-    </tr>
-  </table>
 </div>
 

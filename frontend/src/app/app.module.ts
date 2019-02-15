@@ -4,14 +4,15 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {RutaLoginComponent} from './rutas/ruta-login/ruta-login.component';
 import {HttpClientModule} from "@angular/common/http";
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RutaMenuComponent} from './rutas/ruta-menu/ruta-menu.component';
 import {RutaGestionUsuariosComponent} from "./rutas/ruta-gestion-usuarios/ruta-gestion-usuarios.component";
 import {AuthService} from "./servicios/rest/auth.service";
 import {UsuarioRestService} from "./servicios/rest/usuario-rest.service";
 import {TableModule} from "primeng/table";
 import {
-  ButtonModule, CardModule,
+  ButtonModule,
+  CardModule,
   DropdownModule,
   InputTextModule,
   MessageModule,
@@ -37,7 +38,8 @@ import {EventoActualizarComponent} from './modulos/modulo-evento/evento-actualiz
 import {EventoVisualizarComponent} from './modulos/modulo-evento/evento-visualizar/evento-visualizar.component';
 import {EventoVerAutoComponent} from './modulos/modulo-evento/evento-ver-auto/evento-ver-auto.component';
 import {ListaAutosComponent} from './componentes/lista-autos/lista-autos.component';
-import { RutaHomeComponent } from './rutas/ruta-home/ruta-home.component';
+import {RutaHomeComponent} from './rutas/ruta-home/ruta-home.component';
+import {MatSelectModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -79,7 +81,8 @@ import { RutaHomeComponent } from './rutas/ruta-home/ruta-home.component';
     MessagesModule,
     MessageModule,
     CardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [
     AuthService,
