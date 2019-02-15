@@ -24,8 +24,7 @@ export class AutoVisualizarComponent implements OnInit {
     autos$.subscribe(
       (autos) => {
         this.autos = autos;
-        this.autosAux = this.autos
-        console.log(this.autos)
+        this.autosAux = this.autos;
       }
     );
   }

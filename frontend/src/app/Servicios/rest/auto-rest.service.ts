@@ -47,7 +47,7 @@ export class AutoRestService {
     const url = environment.url + this.nombreModelo
       + '/' + auto.id;
     return this._httpClient
-      .put(url, auto)
+      .patch(url, auto)
       .pipe(map(r => <Auto> r));
   }
 }

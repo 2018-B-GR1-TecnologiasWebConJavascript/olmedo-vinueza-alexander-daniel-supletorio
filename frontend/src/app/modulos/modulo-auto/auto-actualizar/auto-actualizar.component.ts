@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Auto} from "../../../interfaces/auto";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AutoRestService} from "../../../servicios/rest/auto-rest.service";
@@ -10,13 +10,14 @@ import {AutoRestService} from "../../../servicios/rest/auto-rest.service";
 })
 export class AutoActualizarComponent implements OnInit {
 
-  autoAActualizar : Auto;
+  autoAActualizar: Auto;
 
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _autoRest: AutoRestService,
     private readonly _route: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     const rutaActiva$ = this._activatedRoute.params;
@@ -34,10 +35,10 @@ export class AutoActualizarComponent implements OnInit {
       );
   }
 
-  actualizarAuto(autoAc: Auto) {
-    if(autoAc.conductor==="")
+  actualizarAuto(autoAc: any) {
+    autoAc.id = this.autoAActualizar.id;
+    if (autoAc.conductor === "")
       autoAc.conductor = null;
-    console.log(autoAc);
     const autoAActualizar$ = this._autoRest.updateOneById(autoAc);
     autoAActualizar$.subscribe(
       (meedi) => this._route.navigate((['/usuario/gestionAuto']))

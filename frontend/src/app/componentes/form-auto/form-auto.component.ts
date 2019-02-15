@@ -73,6 +73,7 @@ export class FormAutoComponent implements OnInit {
       this.autoForm.get('colorUno').setValue(this.autoAux.colorUno);
       this.autoForm.get('colorDos').setValue(this.autoAux.colorDos);
       this.autoForm.get('anio').setValue(this.autoAux.anio);
+      this.autoForm.get('conductor').setValue(this.autoAux.conductor.id);
     }
     const conductor$ = this._conductorRest.findAll();
     conductor$.subscribe(
@@ -99,7 +100,6 @@ export class FormAutoComponent implements OnInit {
       anio: <number>this.f.anio.value,
       conductor: <number>this.f.conductor.value
     };
-    console.log(auto);
     this.loading = true;
     this.formularioValido.emit(auto);
   }
