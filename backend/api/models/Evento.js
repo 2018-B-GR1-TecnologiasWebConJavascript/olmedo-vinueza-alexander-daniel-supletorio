@@ -11,9 +11,11 @@ module.exports = {
     },
     latitud: {
       type: 'number',
+      defaultsTo: -0.210335
     },
     longitud:{
       type: 'number',
+      defaultsTo: -78.489064
     },
     autos:{
       collection: 'auto',

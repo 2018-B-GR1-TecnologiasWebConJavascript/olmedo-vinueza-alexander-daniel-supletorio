@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Evento} from "../../interfaces/evento";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import * as moment from "moment";
 
 @Component({
@@ -41,12 +41,8 @@ export class FormEventoComponent implements OnInit {
       fecha: ['', [
         Validators.required
       ]],
-      latitud: ['', [
-        Validators.required
-      ]],
-      longitud: ['', [
-        Validators.required
-      ]],
+      latitud: new FormControl(),
+      longitud: new FormControl(),
     });
   }
 
@@ -67,8 +63,7 @@ export class FormEventoComponent implements OnInit {
       longitud: <number>this.f.longitud.value,
     };
     this.loading = true;
-    console.log(evento)
-    //this.formularioValido.emit(evento);
+    this.formularioValido.emit(evento);
   }
 
 
