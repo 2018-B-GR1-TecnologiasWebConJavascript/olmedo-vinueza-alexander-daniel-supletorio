@@ -17,11 +17,11 @@ module.exports = {
     numeroAutos: {
       type: 'number',
       isInteger: true,
-      defaultsTo: 0
+      required: true
     },
     licenciaValida: {
       type: 'boolean',
-      defaultsTo: false
+      required: true
     },
     usuario:{
       model: 'usuario',

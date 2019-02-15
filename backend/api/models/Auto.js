@@ -7,19 +7,23 @@ module.exports = {
     },
     nombreMarca:{
       type: 'String',
-      required: true
-    },
-    colorUno:{
-      type: 'String',
-      required: true
-    },
-    colorDos:{
-      type: 'String',
-      required: true
+      required: true,
+      regex: /^[a-zA-Z\s]*$/i
     },
     nombreModelo:{
       type: 'String',
-      required: true
+      required: true,
+      regex: /^[a-zA-Z\s]*$/i
+    },
+    colorUno:{
+      type: 'String',
+      required: true,
+      regex: /^[a-zA-Z\s]*$/i
+    },
+    colorDos:{
+      type: 'String',
+      required: true,
+      regex: /^[a-zA-Z\s]*$/i
     },
     anio: {
       type: 'number',
