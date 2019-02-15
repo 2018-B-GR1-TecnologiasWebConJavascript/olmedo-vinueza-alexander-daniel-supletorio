@@ -17,7 +17,6 @@ export class FormAutoComponent implements OnInit {
   loading = false;
   submitted = false;
   nombreButton: string = "";
-  countries = [{'id': 1, 'name': 'India'}, {'id': 2, 'name': 'USA'}, {'id': 3, 'name': 'UK'}];
 
   @Input()
   autoAux: Auto;
@@ -30,7 +29,7 @@ export class FormAutoComponent implements OnInit {
 
   constructor(
     private readonly _conductorRest: ConductorRestService,
-    private readonly _formBuilder: FormBuilder,
+    private readonly _formBuilder: FormBuilder
   ) {
 
   }

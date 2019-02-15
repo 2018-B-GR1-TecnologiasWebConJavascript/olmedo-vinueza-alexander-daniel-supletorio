@@ -1,6 +1,7 @@
 export interface Evento {
-  id: string | number,
+  id?: string | number,
   nombre: string,
-  lugar: string,
+  latitud: number,
+  longitud: number,
   fecha: string,
 }

@@ -53,8 +53,9 @@ export class EventoRestService {
       + '/' + evento.id;
     const objeto = {
       nombre: evento.nombre,
-      lugar : evento.lugar,
       fecha : evento.fecha,
+      latitud : evento.latitud,
+      longitud : evento.longitud,
     };
     return this._httpClient
       .put(url, objeto)

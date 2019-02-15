@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Evento} from "../../interfaces/evento";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-form-evento',
@@ -9,7 +11,11 @@ import {Evento} from "../../interfaces/evento";
 export class FormEventoComponent implements OnInit {
 
   evento = <Evento>{};
-  nombreButton: string = " ";
+  nombreButton: string = "";
+  eventoForm: FormGroup;
+  loading = false;
+  submitted = false;
+  fechaActual = moment().format("YYYY-MM-DD");
 
   @Input()
   eventAux: Evento;
@@ -20,16 +26,50 @@ export class FormEventoComponent implements OnInit {
   @Output()
   formularioValido = new EventEmitter();
 
+  constructor(
+    private readonly _formBuilder: FormBuilder
+  ) {
+  }
 
-  constructor() { }
   ngOnInit() {
     this.nombreButton = this.nombreButtonAux;
-    if(this.eventAux != null)
-      this.evento = JSON.parse(JSON.stringify(this.eventAux));
+    this.eventoForm = this._formBuilder.group({
+      nombre: ['', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z\s]*$/i)
+      ]],
+      fecha: ['', [
+        Validators.required
+      ]],
+      latitud: ['', [
+        Validators.required
+      ]],
+      longitud: ['', [
+        Validators.required
+      ]],
+    });
   }
 
-  emitirFormulario(){
-    this.formularioValido.emit(this.evento);
+  get f() {
+    return this.eventoForm.controls;
   }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.eventoForm.invalid) {
+      return;
+    }
+
+    let evento: Evento = {
+      nombre: <string>this.f.nombre.value,
+      fecha: <string>this.f.fecha.value,
+      latitud: <number>this.f.latitud.value,
+      longitud: <number>this.f.longitud.value,
+    };
+    this.loading = true;
+    console.log(evento)
+    //this.formularioValido.emit(evento);
+  }
+
 
 }

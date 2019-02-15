@@ -1,28 +1,43 @@
-<div >
-  <form #formularioEvento="ngForm"
-        novalidate
-        (submit)="emitirFormulario(formularioEvento)">
-
-    <div>
-      <input id="nombreEvento" type="text" required name="nombreEvento"
-             placeholder="Nombre"
-             [(ngModel)]="evento.nombre">
+<div class="container">
+  <a class="nav-item nav-link" routerLink="/usuario/gestionConductor">Regresar</a>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3>Evento</h3>
+      <form [formGroup]="eventoForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+          <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+            <div *ngIf="f.nombre.errors.required">Este campo no puede estar vacío</div>
+            <div *ngIf="f.nombre.errors.pattern">Solo debe contener letras y espacios</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fecha">Fecha</label>
+          <input id="fecha" type="date" min="{{fechaActual}}" formControlName="fecha" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fecha.errors }" />
+          <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
+            <div *ngIf="f.fecha.errors.required">Este campo no puede estar vacío</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="latitud">Latitud</label>
+          <input id="latitud" type="number" formControlName="latitud" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.latitud.errors }" />
+          <div *ngIf="submitted && f.latitud.errors" class="invalid-feedback">
+            <div *ngIf="f.latitud.errors.required">Este campo no puede estar vacío</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="longitud">Longitud</label>
+          <input id="longitud" type="number" formControlName="longitud" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.longitud.errors }" />
+          <div *ngIf="submitted && f.longitud.errors" class="invalid-feedback">
+            <div *ngIf="f.longitud.errors.required">Este campo no puede estar vacío</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary btn-block">{{nombreButton}}</button>
+        </div>
+      </form>
     </div>
-    <div>
-      <input id="lugar" type="text" required name="lugar"
-             placeholder="Lugar"
-             [(ngModel)]="evento.lugar">
-    </div>
-    <div>
-      <input id="fecha" type="date" required name="fecha"
-             placeholder="fecha del evento"
-             [(ngModel)]="evento.fecha">
-    </div>
-    <div>
-      <button [disabled]="formularioEvento.invalid">
-        {{nombreButton}}
-      </button>
-    </div>
-  </form>
-
+  </div>
 </div>
+
