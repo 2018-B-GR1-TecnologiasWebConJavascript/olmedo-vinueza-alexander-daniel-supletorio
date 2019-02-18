@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
 import {EventoRestService} from "../../../servicios/rest/evento-rest.service";
+import {Auto} from "../../../interfaces/auto";
 
 @Component({
   selector: 'app-evento-agregar-hijo',
@@ -11,6 +12,7 @@ import {EventoRestService} from "../../../servicios/rest/evento-rest.service";
 export class EventoAgregarHijoComponent implements OnInit {
 
   mapUrl: string;
+  autos: Auto[];
 
   eventoActual: any = {
     nombre: '',
@@ -31,7 +33,6 @@ export class EventoAgregarHijoComponent implements OnInit {
     rutaActiva$
       .subscribe(
         (parametros) => {
-          console.log(parametros.idEvento);
           this.findEvento(parametros.idEvento);
         }
       );
@@ -42,9 +43,11 @@ export class EventoAgregarHijoComponent implements OnInit {
       .findEventoById(idEvento);
     roles$
       .subscribe(
-        (evento) => {
+        (evento: any) => {
+          console.log(evento);
           this.eventoActual = evento;
           this.mapUrl = 'https://maps.google.com/maps?q=' + this.eventoActual.latitud + '%2C' + this.eventoActual.longitud + '&t=&z=15&ie=UTF8&iwloc=&output=embed'
+          this.autos = evento.autos;
         },
         (error) => {
           console.error('Error', error);

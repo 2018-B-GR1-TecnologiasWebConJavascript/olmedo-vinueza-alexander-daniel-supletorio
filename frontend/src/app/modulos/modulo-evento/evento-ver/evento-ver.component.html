@@ -1,33 +1,33 @@
 <br>
-  <div>
-    <div *ngIf="isUser">
-      <a routerLink="/eventos/crearEvento">
-        <button class="btn btn-success" > Crear Evento</button>
-      </a>
-    </div>
-    <br>
-    <div>
-      <h3>Eventos</h3>
-      <table class="table table-bordered">
-        <tr>
-          <th>Nombre</th>
-          <th>Fecha</th>
-          <th>Latitud</th>
-          <th>Longitud</th>
-          <th>Accion</th>
-        </tr>
-        <tr *ngFor="let evento  of eventos">
-          <td>{{evento.nombre}}</td>
-          <td>{{evento.fecha}}</td>
-          <td>{{evento.latitud}}</td>
-          <td>{{evento.longitud}}</td>
-          <td>
-            <a *ngIf="isUser" [routerLink]="['/eventos','agregarHijos',evento.id]">
-              <button class="btn btn-info">Añadir autos al evento</button>
-            </a>
-          </td>
-        </tr>
-      </table>
-    </div>
+<div>
+  <div *ngIf="isUser">
+    <a routerLink="/eventos/crearEvento">
+      <button class="btn btn-success"> Crear Evento</button>
+    </a>
   </div>
+  <br>
+  <div>
+    <h3>Eventos</h3>
+    <table class="table table-bordered">
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Latitud</th>
+        <th>Longitud</th>
+        <th>Accion</th>
+      </tr>
+      <tr *ngFor="let evento  of eventos">
+        <td>{{evento.nombre}}</td>
+        <td>{{evento.fecha}}</td>
+        <td>{{evento.latitud}}</td>
+        <td>{{evento.longitud}}</td>
+        <td>
+          <a *ngIf="isUser" [routerLink]="['/eventos','agregarHijos',evento.id]">
+            <button class="btn btn-info">Añadir autos al evento</button>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
 
