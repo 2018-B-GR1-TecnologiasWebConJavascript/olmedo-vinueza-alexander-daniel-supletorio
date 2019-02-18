@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {FacturaCabecera} from "../../../interfaces/factura";
 import {FacturaRestService} from "../../../servicios/rest/factura-rest.service";
+import {AuthService} from "../../../servicios/rest/auth.service";
 
 @Component({
   selector: 'app-factura-visualizar',
@@ -17,7 +18,8 @@ export class FacturaVisualizarComponent implements OnInit {
 
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
-    private readonly _facturaRestService: FacturaRestService
+    private readonly _facturaRestService: FacturaRestService,
+    private readonly _authService: AuthService
   ) {
   }
 
@@ -30,7 +32,7 @@ export class FacturaVisualizarComponent implements OnInit {
           facturas$.subscribe(
             (facturas) => {
               this.facturas = facturas.filter(factura => {
-                return factura.evento.id == parametros.idEvento;
+                return factura.evento.id == parametros.idEvento && factura.cajero.id == this._authService.currentUserValue.id;
               });
               this.facturasAux = this.facturas;
             }
