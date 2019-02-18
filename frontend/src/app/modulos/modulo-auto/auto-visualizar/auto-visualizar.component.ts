@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Auto} from "../../../interfaces/auto";
 import {AutoRestService} from "../../../servicios/rest/auto-rest.service";
+import {AuthService} from "../../../servicios/rest/auth.service";
 
 @Component({
   selector: 'app-auto-visualizar',
@@ -14,7 +15,8 @@ export class AutoVisualizarComponent implements OnInit {
   elementoABuscar : string = '';
 
   constructor(
-    private readonly _autoRest: AutoRestService
+    private readonly _autoRest: AutoRestService,
+    private readonly _authService: AuthService
   ) {
 
   }
@@ -23,7 +25,9 @@ export class AutoVisualizarComponent implements OnInit {
     const autos$ = this._autoRest.findAll();
     autos$.subscribe(
       (autos) => {
-        this.autos = autos;
+        this.autos = autos.filter(auto=>{
+          return auto.conductor.usuario == this._authService.currentUserValue.id;
+        });
         this.autosAux = this.autos;
       }
     );
