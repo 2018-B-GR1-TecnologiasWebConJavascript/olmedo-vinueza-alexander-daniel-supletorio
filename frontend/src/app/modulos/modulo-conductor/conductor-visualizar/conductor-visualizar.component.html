@@ -5,16 +5,15 @@
   <br>
   <br>
   <div>
-  <span class="ui-fluid ui-float-label">
-          <input id="search" name="search" type="search" pInputText [(ngModel)]="elementoABuscar">
-          <label for="search">Buscar nombre o apellido</label>
-        </span>
+    <span class="ui-fluid ui-float-label">
+        <input id="search" name="search" type="search" pInputText [(ngModel)]="elementoABuscar">
+        <label for="search">Buscar nombre o apellido</label>
+    </span>
     <span class="p-justify-end ui-inputgroup">
-
-    <div>
-      <button pButton type="button" label="Buscar" (click)="buscar()"></button>
-    </div>
-  </span>
+      <div>
+        <button pButton type="button" label="Buscar" (click)="buscar()"></button>
+      </div>
+    </span>
   </div>
   <div>
     <table class="table table-bordered">
@@ -23,7 +22,7 @@
       </tr>
       <tr>
         <th>Nombres</th>
-        <th>Apellidos </th>
+        <th>Apellidos</th>
         <th>Fecha de Nacimiento</th>
         <th>Número de autos</th>
         <th>Licencia Válida</th>
@@ -39,7 +38,7 @@
           <a [routerLink]="['/usuario','actualizarConductor',conductor.id]">
             <button class="btn btn-info">Actualizar</button>
           </a>
-          <button class="btn btn-danger" (click)="eliminarConductor(conductor.id)" >Eliminar</button>
+          <button class="btn btn-danger" (click)="eliminarConductor(conductor.id)">Eliminar</button>
         </td>
       </tr>
     </table>

@@ -2,10 +2,22 @@
 <div>
   <div *ngIf="isUser">
     <a routerLink="/eventos/crearEvento">
-      <button class="btn btn-success"> Crear Evento</button>
+      <button class="btn btn-success">Crear Evento</button>
     </a>
   </div>
   <br>
+  <br>
+  <div>
+    <span class="ui-fluid ui-float-label">
+        <input id="search" name="search" type="search" pInputText [(ngModel)]="elementoABuscar">
+        <label for="search">Buscar evento</label>
+    </span>
+    <span class="p-justify-end ui-inputgroup">
+      <div>
+        <button pButton type="button" label="Buscar" (click)="buscar()"></button>
+      </div>
+    </span>
+  </div>
   <div>
     <h3>Eventos</h3>
     <table class="table table-bordered">
@@ -27,6 +39,9 @@
           </a>
           <a *ngIf="isUser" [routerLink]="['/eventos','agregarHijos',evento.id]">
             <button class="btn btn-info">Añadir autos</button>
+          </a>
+          <a *ngIf="isCashier">
+            <button class="btn btn-primary">Gestionar Facturas</button>
           </a>
         </td>
       </tr>
