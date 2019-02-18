@@ -24,10 +24,10 @@ export class EventoRestService {
     return eventos$;
   }
 
-  findEventoById(id: number | string):Observable<Evento>{
+  findEventoById(id: number | string):Observable<any>{
     const eventos$ = this._httpClient
       .get(environment.url + this.nombreModelo + `/${id}` )
-      .pipe(map(e => <Evento> e));
+      .pipe(map(e => <any> e));
     return eventos$;
   }
 
@@ -39,6 +39,23 @@ export class EventoRestService {
       .post(environment.url + "/eventoporauto/autos",objeto)
       .pipe(map(e =>  <EventoAutoInterface[]> e));
     return autos$;
+  }
+  
+  createEventoPorAuto(eventoporauto: EventoAutoInterface):Observable<any>{
+    const url = environment.url + '/eventoporauto';
+    return this._httpClient
+      .post(url, eventoporauto)
+      .pipe(map(r => <any> r)); // Castear
+  }
+
+  eliminarAuto(auto_id: number, evento_id: number): Observable<any> {
+    const url = environment.url + '/evento/eliminarAuto';
+    return this._httpClient
+      .post(url, {
+        auto_id: auto_id,
+        evento_id: evento_id
+      })
+      .pipe(map(r => <any>r)); // Casteo
   }
 
   create(evento:Evento): Observable<Evento> {

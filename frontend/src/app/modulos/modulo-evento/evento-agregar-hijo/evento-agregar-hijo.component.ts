@@ -5,7 +5,9 @@ import {EventoRestService} from "../../../servicios/rest/evento-rest.service";
 import {Auto} from "../../../interfaces/auto";
 import {AutoRestService} from "../../../servicios/rest/auto-rest.service";
 import {AuthService} from "../../../servicios/rest/auth.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {EventoAutoInterface} from "../../../interfaces/EventoAutoInterface";
+import {Rol} from "../../../interfaces/rol";
 
 @Component({
   selector: 'app-evento-agregar-hijo',
@@ -40,6 +42,7 @@ export class EventoAgregarHijoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.submitted = false;
     const rutaActiva$ = this._activatedRoute.params;
     rutaActiva$
       .subscribe(
@@ -104,12 +107,59 @@ export class EventoAgregarHijoComponent implements OnInit {
       this.registroRepetido = true;
     } else {
       this.registroRepetido = false;
-      // const respuestaRolUsuario$ = this._usuarioRestService
-      //   .asignarRol(
-      //     this.usuarioAActualizar.id,
-      //     this.rolSeleccionado.id
-      //   );
+      let eventoPorAuto: EventoAutoInterface = {
+        evento_id: this.eventoActual.id,
+        auto_id: parseInt(this.f.auto.value),
+        precio_base: Number(this.f.precio_base.value)
+      };
+      const crearEventoPorAuto$ = this._eventoRestService.createEventoPorAuto(eventoPorAuto);
+      crearEventoPorAuto$.subscribe(
+        (eventoPorAuto)=>{
+          this.ngOnInit();
+        }, (error)=>{
+          console.log(error)
+        }
+      )
+
     }
+  }
+
+  eliminarAuto(autoEliminado: Auto) {
+
+    console.log(autoEliminado);
+
+    if(this.autosDisponibles.some((auto)=>{return auto.id===autoEliminado.id})){
+      const autoEliminado$ = this._eventoRestService.eliminarAuto(Number(autoEliminado.id),this.eventoActual.id)
+      autoEliminado$.subscribe(
+        (auto)=>{
+          console.log(auto);
+          this.ngOnInit();
+        }, (error) => {
+          console.log(error)
+        }
+      );
+
+    } else {
+      alert("Usted no puede eliminar ese auto")
+    }
+
+    // const rolEliminado$ = this._usuarioRestService.eliminarRol(this.usuarioAActualizar.id, rol.id);
+    //
+    // rolEliminado$
+    //   .subscribe(
+    //     (rolEliminado) => {
+    //       console.log('Se elimino:', rolEliminado);
+    //
+    //       const indice = this.rolesDeUsuario
+    //         .findIndex((r) => r.id === rol.id);
+    //
+    //       this.rolesDeUsuario.splice(indice, 1);
+    //
+    //     },
+    //     (error) => {
+    //       console.error('Error', error);
+    //     }
+    //   );
   }
 
 }

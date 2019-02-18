@@ -109,11 +109,7 @@ export class RutaActualizarUsuarioComponent implements OnInit {
   }
 
   eliminarRol(rol: Rol) {
-
-    console.log(this.usuarioAActualizar.id, rol.id)
-
     const rolEliminado$ = this._usuarioRestService.eliminarRol(this.usuarioAActualizar.id, rol.id);
-
     rolEliminado$
       .subscribe(
         (rolEliminado) => {
