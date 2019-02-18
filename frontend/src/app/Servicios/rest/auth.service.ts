@@ -36,7 +36,6 @@ export class AuthService {
       })
       .pipe(map(usuario => {
         if(usuario){
-          console.log(usuario);
           localStorage.setItem('usuarioActual', JSON.stringify(usuario));
           this.usuarioActualSubject.next(usuario);
         }

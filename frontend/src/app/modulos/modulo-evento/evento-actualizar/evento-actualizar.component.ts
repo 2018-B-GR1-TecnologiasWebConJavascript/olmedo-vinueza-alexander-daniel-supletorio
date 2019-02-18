@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Evento} from "../../../interfaces/evento";
 import {ActivatedRoute, Router} from "@angular/router";
 import {EventoRestService} from "../../../servicios/rest/evento-rest.service";

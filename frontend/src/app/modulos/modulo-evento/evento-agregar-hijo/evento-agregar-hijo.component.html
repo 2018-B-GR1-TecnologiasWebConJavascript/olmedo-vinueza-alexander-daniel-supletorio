@@ -1,6 +1,5 @@
 <div class="container">
   <a class="nav-item nav-link" routerLink="/eventos">Regresar</a>
-  <h2>Añadir Autos a Evento</h2>
   <div class="row">
     <div class="col">
       <h3>Evento</h3>
@@ -35,14 +34,18 @@
     </div>
     <div class="col">
       <h3>Autos en Evento</h3>
-
+      <div *ngIf="registroRepetido">
+        <p-message
+          severity="warn"
+          text="Error: El evento ya tiene registrado el auto seleccionado"></p-message>
+      </div>
       <table class="table table-bordered">
         <tr>
           <th>Chasis</th>
           <th>Modelo</th>
           <th>Accion</th>
         </tr>
-        <tr *ngFor="let auto  of autos">
+        <tr *ngFor="let auto  of autosActuales">
           <td>{{auto.chasis}}</td>
           <td>{{auto.nombreMarca}} {{auto.nombreModelo}}</td>
           <td>
@@ -50,10 +53,32 @@
           </td>
         </tr>
       </table>
-
     </div>
     <div class="col">
-      3 of 3
+      <h3>Añadir Auto</h3>
+      <form [formGroup]="agregarAutoForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="auto">Auto</label>
+          <select class="form-control" id="auto" formControlName="auto" [ngClass]="{ 'is-invalid': submitted && f.auto.errors }">
+            <option *ngFor="let auto of autosDisponibles" [value]="auto.id">{{auto.chasis}} {{auto.nombreMarca}} {{auto.nombreModelo}}</option>
+          </select>
+          <div *ngIf="submitted && f.auto.errors" class="invalid-feedback">
+            <div *ngIf="f.auto.errors.required">Este campo no puede estar vacío</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="precio_base">Precio Base</label>
+          <input id="precio_base" type="number" min="0" formControlName="precio_base" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.precio_base.errors }"/>
+          <div *ngIf="submitted && f.precio_base.errors" class="invalid-feedback">
+            <div *ngIf="f.precio_base.errors.required">Este campo no puede estar vacío</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary btn-block">Agregar Auto</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

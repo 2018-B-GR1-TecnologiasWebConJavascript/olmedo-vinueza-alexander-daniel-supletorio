@@ -3,6 +3,9 @@ import {ActivatedRoute} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
 import {EventoRestService} from "../../../servicios/rest/evento-rest.service";
 import {Auto} from "../../../interfaces/auto";
+import {AutoRestService} from "../../../servicios/rest/auto-rest.service";
+import {AuthService} from "../../../servicios/rest/auth.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-evento-agregar-hijo',
@@ -12,7 +15,12 @@ import {Auto} from "../../../interfaces/auto";
 export class EventoAgregarHijoComponent implements OnInit {
 
   mapUrl: string;
-  autos: Auto[];
+  autosActuales: Auto[];
+  autosDisponibles: Auto[];
+  agregarAutoForm: FormGroup;
+  loading = false;
+  submitted = false;
+  registroRepetido=false;
 
   eventoActual: any = {
     nombre: '',
@@ -25,6 +33,9 @@ export class EventoAgregarHijoComponent implements OnInit {
     private readonly _activatedRoute: ActivatedRoute,
     public sanitizer: DomSanitizer,
     private readonly _eventoRestService: EventoRestService,
+    private readonly _autoRestService: AutoRestService,
+    private readonly _authService: AuthService,
+    private readonly _formBuilder: FormBuilder
   ) {
   }
 
@@ -34,9 +45,24 @@ export class EventoAgregarHijoComponent implements OnInit {
       .subscribe(
         (parametros) => {
           this.findEvento(parametros.idEvento);
+          this.findAutosDisponibles();
         }
       );
+    this.agregarAutoForm = this._formBuilder.group({
+      auto: ['', [
+        Validators.required
+      ]],
+      precio_base: ['', [
+        Validators.required,
+        Validators.min(0)
+      ]],
+    });
   }
+
+  get f() {
+    return this.agregarAutoForm.controls;
+  }
+
 
   findEvento(idEvento) {
     const roles$ = this._eventoRestService
@@ -44,15 +70,46 @@ export class EventoAgregarHijoComponent implements OnInit {
     roles$
       .subscribe(
         (evento: any) => {
-          console.log(evento);
           this.eventoActual = evento;
-          this.mapUrl = 'https://maps.google.com/maps?q=' + this.eventoActual.latitud + '%2C' + this.eventoActual.longitud + '&t=&z=15&ie=UTF8&iwloc=&output=embed'
-          this.autos = evento.autos;
+          this.mapUrl = 'https://maps.google.com/maps?q=' + this.eventoActual.latitud + '%2C' + this.eventoActual.longitud + '&t=&z=15&ie=UTF8&iwloc=&output=embed';
+          this.autosActuales = evento.autos;
         },
         (error) => {
           console.error('Error', error);
         }
       );
+  }
+
+  findAutosDisponibles() {
+    const autosDisponibles$ = this._autoRestService.findAll();
+    autosDisponibles$
+      .subscribe(
+        (autos: Auto[]) => {
+          this.autosDisponibles = autos.filter(auto => {
+            return auto.conductor.usuario == this._authService.currentUserValue.id
+          });
+        }, (error) => {
+          console.log(error)
+        }
+      )
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.agregarAutoForm.invalid) {
+      return;
+    }
+
+    if(this.autosActuales.some((auto)=>{return auto.id===parseInt(this.f.auto.value)})){
+      this.registroRepetido = true;
+    } else {
+      this.registroRepetido = false;
+      // const respuestaRolUsuario$ = this._usuarioRestService
+      //   .asignarRol(
+      //     this.usuarioAActualizar.id,
+      //     this.rolSeleccionado.id
+      //   );
+    }
   }
 
 }
