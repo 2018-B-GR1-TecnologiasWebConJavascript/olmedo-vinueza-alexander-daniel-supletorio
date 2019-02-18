@@ -36,13 +36,6 @@ export class AppComponent {
       return false ;
   }
 
-  get isCashier() {
-    if(this.usuarioActual){
-      return this.usuarioActual.roles.some(rol=>rol.nombre===Roles.CAJERO)
-    } else
-      return false ;
-  }
-
   get isClient() {
     if(this.usuarioActual){
       return this.usuarioActual.roles.some(rol=>rol.nombre===Roles.CLIENTE)

@@ -18,6 +18,7 @@ import {RutaHomeComponent} from "./rutas/ruta-home/ruta-home.component";
 import {RutaEventosComponent} from "./rutas/ruta-eventos/ruta-eventos.component";
 import {EventoAgregarHijoComponent} from "./modulos/modulo-evento/evento-agregar-hijo/evento-agregar-hijo.component";
 import {EventoVerAutosComponent} from "./modulos/modulo-evento/evento-ver-autos/evento-ver-autos.component";
+import {FacturaVisualizarComponent} from "./modulos/modulo-cajero/factura-visualizar/factura-visualizar.component";
 
 const routes: Routes = [
   {
@@ -75,6 +76,10 @@ const routes: Routes = [
       {
         path: 'verEvento/:idEvento',
         component: EventoVerAutosComponent,
+      },
+      {
+        path: 'listaFacturas/:idEvento',
+        component: FacturaVisualizarComponent,
       },
     ]
   },

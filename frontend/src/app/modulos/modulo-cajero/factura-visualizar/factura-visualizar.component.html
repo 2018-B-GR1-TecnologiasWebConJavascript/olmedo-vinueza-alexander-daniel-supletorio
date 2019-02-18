@@ -1,0 +1,51 @@
+<div class="container">
+  <h2>Lista de Facturas</h2>
+  <br>
+  <div>
+    <span class="ui-fluid ui-float-label">
+      <input id="search" name="search" type="search" pInputText [(ngModel)]="elementoABuscar">
+      <label for="search">Buscar por nombre del cliente</label>
+    </span>
+    <span class="p-justify-end ui-inputgroup">
+      <div>
+        <button pButton type="button" label="Buscar" (click)="buscar()"></button>
+      </div>
+    </span>
+    <div>
+      <h4>Filtar por estado</h4>
+      <mat-form-field>
+        <mat-select [(value)]="selected">
+          <mat-option value="estadoTodos">Todos</mat-option>
+          <mat-option value="estadoCompra">En compra</mat-option>
+          <mat-option value="estadoPagado">Pagados</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <br>
+    <br>
+    <a >
+      <button class="btn btn-success">Crear Factura</button>
+    </a>
+    <br>
+    <table class="table table-bordered">
+      <tr>
+        <th>Nombre Cliente</th>
+        <th>Fecha</th>
+        <th>Total</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+      <tr *ngFor="let factura  of facturas">
+        <td>{{factura.cliente.nombre}}</td>
+        <td>{{factura.fecha}}</td>
+        <td>{{factura.total}}</td>
+        <td>{{factura.estado}}</td>
+        <td>
+          <a >
+            <button class="btn btn-warning">Gestionar</button>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

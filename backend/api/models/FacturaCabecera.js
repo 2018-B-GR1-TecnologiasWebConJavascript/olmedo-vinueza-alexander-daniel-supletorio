@@ -1,9 +1,8 @@
 module.exports = {
   attributes: {
-    nombre: {
-      type: 'string',
-      required: true,
-      regex: /^[a-zA-Z\s]*$/i
+    cliente: {
+      model: 'usuario',
+      required: true
     },
     cedula_o_ruc:{
       type: 'number',
@@ -44,6 +43,10 @@ module.exports = {
     },
     cajero:{
       model: 'usuario',
+      required: true
+    },
+    evento:{
+      model: 'evento',
       required: true
     },
   },

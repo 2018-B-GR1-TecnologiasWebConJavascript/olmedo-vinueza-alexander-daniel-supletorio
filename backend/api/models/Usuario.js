@@ -35,5 +35,9 @@ module.exports = {
       collection: 'facturacabecera',
       via: 'cajero'
     },
+    facturasComoCliente:{
+      collection: 'facturacabecera',
+      via: 'cliente'
+    },
   },
 };

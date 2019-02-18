@@ -6,7 +6,6 @@
     </a>
   </div>
   <br>
-  <br>
   <div>
     <span class="ui-fluid ui-float-label">
         <input id="search" name="search" type="search" pInputText [(ngModel)]="elementoABuscar">
@@ -40,8 +39,8 @@
           <a *ngIf="isUser" [routerLink]="['/eventos','agregarHijos',evento.id]">
             <button class="btn btn-info">Añadir autos</button>
           </a>
-          <a *ngIf="isCashier">
-            <button class="btn btn-primary">Gestionar Facturas</button>
+          <a *ngIf="isCashier" [routerLink]="['/eventos','listaFacturas',evento.id]">
+            <button class="btn btn-warning">Gestionar Facturas</button>
           </a>
         </td>
       </tr>

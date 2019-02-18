@@ -26,5 +26,9 @@ module.exports = {
       via: 'evento_id',
       through: 'eventoporauto'
     },
+    facturas:{
+      collection: 'facturacabecera',
+      via: 'evento'
+    },
   },
 };

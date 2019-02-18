@@ -1,20 +1,19 @@
 <div>
   <a routerLink="/usuario/crearAuto">
-    <button class="btn btn-success" >Crear Auto</button>
+    <button class="btn btn-success">Crear Auto</button>
   </a>
   <br>
   <br>
   <div>
-  <span class="ui-fluid ui-float-label">
-          <input id="search" name="search" type="search" pInputText [(ngModel)]="elementoABuscar">
-          <label for="search">Buscar chasis, marca o modelo</label>
-        </span>
+    <span class="ui-fluid ui-float-label">
+      <input id="search" name="search" type="search" pInputText [(ngModel)]="elementoABuscar">
+      <label for="search">Buscar chasis, marca o modelo</label>
+    </span>
     <span class="p-justify-end ui-inputgroup">
-
-    <div>
-      <button pButton type="button" label="Buscar" (click)="buscar()"></button>
-    </div>
-  </span>
+      <div>
+        <button pButton type="button" label="Buscar" (click)="buscar()"></button>
+      </div>
+    </span>
   </div>
   <div>
     <table class="table table-bordered">
@@ -23,7 +22,7 @@
       </tr>
       <tr>
         <th>Chasis</th>
-        <th>Marca </th>
+        <th>Marca</th>
         <th>Color Uno</th>
         <th>Color Dos</th>
         <th>Nombre del modelo</th>
@@ -44,7 +43,7 @@
           <a [routerLink]="['/usuario','actualizarAuto',auto.id]">
             <button class="btn btn-info">Actualizar</button>
           </a>
-          <button class="btn btn-danger" (click)="eliminarAuto(auto.id)" >Eliminar</button>
+          <button class="btn btn-danger" (click)="eliminarAuto(auto.id)">Eliminar</button>
         </td>
       </tr>
     </table>

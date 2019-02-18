@@ -36,10 +36,11 @@ import {EventoCrearComponent} from './modulos/modulo-evento/evento-crear/evento-
 import {FormEventoComponent} from './componentes/form-evento/form-evento.component';
 import {ListaAutosComponent} from './componentes/lista-autos/lista-autos.component';
 import {RutaHomeComponent} from './rutas/ruta-home/ruta-home.component';
-import {MatSelectModule} from "@angular/material";
+import {MatListModule, MatSelectModule} from "@angular/material";
 import {RutaEventosComponent} from './rutas/ruta-eventos/ruta-eventos.component';
 import {EventoAgregarHijoComponent} from './modulos/modulo-evento/evento-agregar-hijo/evento-agregar-hijo.component';
 import {EventoVerAutosComponent} from './modulos/modulo-evento/evento-ver-autos/evento-ver-autos.component';
+import {FacturaVisualizarComponent} from './modulos/modulo-cajero/factura-visualizar/factura-visualizar.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {EventoVerAutosComponent} from './modulos/modulo-evento/evento-ver-autos/
     RutaHomeComponent,
     RutaEventosComponent,
     EventoAgregarHijoComponent,
-    EventoVerAutosComponent
+    EventoVerAutosComponent,
+    FacturaVisualizarComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ import {EventoVerAutosComponent} from './modulos/modulo-evento/evento-ver-autos/
     MessageModule,
     CardModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatListModule
   ],
   providers: [
     AuthService,
