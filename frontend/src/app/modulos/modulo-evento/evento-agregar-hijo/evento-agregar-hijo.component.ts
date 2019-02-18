@@ -48,6 +48,7 @@ export class EventoAgregarHijoComponent implements OnInit {
       .subscribe(
         (parametros) => {
           this.findEvento(parametros.idEvento);
+          this.autosDisponibles = [];
           this.findAutosDisponibles();
         }
       );
