@@ -19,6 +19,7 @@ import {EventoVisualizarComponent} from "./modulos/modulo-evento/evento-visualiz
 import {EventoVerAutoComponent} from "./modulos/modulo-evento/evento-ver-auto/evento-ver-auto.component";
 import {RutaHomeComponent} from "./rutas/ruta-home/ruta-home.component";
 import {RutaEventosComponent} from "./rutas/ruta-eventos/ruta-eventos.component";
+import {EventoAgregarHijoComponent} from "./modulos/modulo-evento/evento-agregar-hijo/evento-agregar-hijo.component";
 
 const routes: Routes = [
   {
@@ -68,6 +69,10 @@ const routes: Routes = [
       {
         path: 'crearEvento',
         component: EventoCrearComponent,
+      },
+      {
+        path: 'agregarHijos/:idEvento',
+        component: EventoAgregarHijoComponent,
       },
     ]
   },

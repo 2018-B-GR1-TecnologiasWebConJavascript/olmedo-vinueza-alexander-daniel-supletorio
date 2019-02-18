@@ -7,10 +7,8 @@
     </div>
     <br>
     <div>
-      <table class="table">
-        <tr>
-          <h3>Eventos</h3>
-        </tr>
+      <h3>Eventos</h3>
+      <table class="table table-bordered">
         <tr>
           <th>Nombre</th>
           <th>Fecha</th>
@@ -24,8 +22,8 @@
           <td>{{evento.latitud}}</td>
           <td>{{evento.longitud}}</td>
           <td>
-            <a *ngIf="isUser" [routerLink]="['/usuario','actualizarEvento',evento.id]">
-              <button>Añadir autos al evento</button>
+            <a *ngIf="isUser" [routerLink]="['/eventos','agregarHijos',evento.id]">
+              <button class="btn btn-info">Añadir autos al evento</button>
             </a>
           </td>
         </tr>

@@ -41,6 +41,7 @@ import {ListaAutosComponent} from './componentes/lista-autos/lista-autos.compone
 import {RutaHomeComponent} from './rutas/ruta-home/ruta-home.component';
 import {MatSelectModule} from "@angular/material";
 import {RutaEventosComponent} from './rutas/ruta-eventos/ruta-eventos.component';
+import { EventoAgregarHijoComponent } from './modulos/modulo-evento/evento-agregar-hijo/evento-agregar-hijo.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {RutaEventosComponent} from './rutas/ruta-eventos/ruta-eventos.component'
     EventoVerAutoComponent,
     ListaAutosComponent,
     RutaHomeComponent,
-    RutaEventosComponent
+    RutaEventosComponent,
+    EventoAgregarHijoComponent
   ],
   imports: [
     BrowserModule,
