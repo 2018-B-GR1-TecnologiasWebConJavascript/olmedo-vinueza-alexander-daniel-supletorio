@@ -34,15 +34,12 @@ import {AutoActualizarComponent} from './modulos/modulo-auto/auto-actualizar/aut
 import {EventoVerComponent} from './modulos/modulo-evento/evento-ver/evento-ver.component';
 import {EventoCrearComponent} from './modulos/modulo-evento/evento-crear/evento-crear.component';
 import {FormEventoComponent} from './componentes/form-evento/form-evento.component';
-import {EventoActualizarComponent} from './modulos/modulo-evento/evento-actualizar/evento-actualizar.component';
-import {EventoVisualizarComponent} from './modulos/modulo-evento/evento-visualizar/evento-visualizar.component';
-import {EventoVerAutoComponent} from './modulos/modulo-evento/evento-ver-auto/evento-ver-auto.component';
 import {ListaAutosComponent} from './componentes/lista-autos/lista-autos.component';
 import {RutaHomeComponent} from './rutas/ruta-home/ruta-home.component';
 import {MatSelectModule} from "@angular/material";
 import {RutaEventosComponent} from './rutas/ruta-eventos/ruta-eventos.component';
-import { EventoAgregarHijoComponent } from './modulos/modulo-evento/evento-agregar-hijo/evento-agregar-hijo.component';
-import { EventoVerAutosComponent } from './modulos/modulo-evento/evento-ver-autos/evento-ver-autos.component';
+import {EventoAgregarHijoComponent} from './modulos/modulo-evento/evento-agregar-hijo/evento-agregar-hijo.component';
+import {EventoVerAutosComponent} from './modulos/modulo-evento/evento-ver-autos/evento-ver-autos.component';
 
 @NgModule({
   declarations: [
@@ -64,9 +61,6 @@ import { EventoVerAutosComponent } from './modulos/modulo-evento/evento-ver-auto
     EventoVerComponent,
     EventoCrearComponent,
     FormEventoComponent,
-    EventoActualizarComponent,
-    EventoVisualizarComponent,
-    EventoVerAutoComponent,
     ListaAutosComponent,
     RutaHomeComponent,
     RutaEventosComponent,

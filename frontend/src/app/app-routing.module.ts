@@ -14,9 +14,6 @@ import {AutoCrearComponent} from "./modulos/modulo-auto/auto-crear/auto-crear.co
 import {AutoActualizarComponent} from "./modulos/modulo-auto/auto-actualizar/auto-actualizar.component";
 import {EventoVerComponent} from "./modulos/modulo-evento/evento-ver/evento-ver.component";
 import {EventoCrearComponent} from "./modulos/modulo-evento/evento-crear/evento-crear.component";
-import {EventoActualizarComponent} from "./modulos/modulo-evento/evento-actualizar/evento-actualizar.component";
-import {EventoVisualizarComponent} from "./modulos/modulo-evento/evento-visualizar/evento-visualizar.component";
-import {EventoVerAutoComponent} from "./modulos/modulo-evento/evento-ver-auto/evento-ver-auto.component";
 import {RutaHomeComponent} from "./rutas/ruta-home/ruta-home.component";
 import {RutaEventosComponent} from "./rutas/ruta-eventos/ruta-eventos.component";
 import {EventoAgregarHijoComponent} from "./modulos/modulo-evento/evento-agregar-hijo/evento-agregar-hijo.component";
