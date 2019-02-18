@@ -22,6 +22,9 @@
         <td>{{evento.latitud}}</td>
         <td>{{evento.longitud}}</td>
         <td>
+          <a [routerLink]="['/eventos','verEvento', evento.id]">
+            <button class="btn btn-secondary">Ver</button>
+          </a>
           <a *ngIf="isUser" [routerLink]="['/eventos','agregarHijos',evento.id]">
             <button class="btn btn-info">Añadir autos</button>
           </a>

@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>EVENTO</h2>
+  <h3>{{eventoActual.nombre}}, {{eventoActual.fecha}}</h3>
+  <br>
+  <div class="row">
+    <div *ngFor="let auto of autosActuales" class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top" src="https://static.thenounproject.com/png/10662-200.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{auto.nombreMarca}} {{auto.nombreModelo}}</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Chasis: {{auto.chasis}}</li>
+            <li class="list-group-item">Año: {{auto.anio}}</li>
+            <li class="list-group-item">Color Uno: {{auto.colorUno}}</li>
+            <li class="list-group-item">Color Dos: {{auto.colorDos}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

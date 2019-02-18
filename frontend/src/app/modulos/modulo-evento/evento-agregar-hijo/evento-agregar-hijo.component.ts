@@ -22,7 +22,7 @@ export class EventoAgregarHijoComponent implements OnInit {
   agregarAutoForm: FormGroup;
   loading = false;
   submitted = false;
-  registroRepetido=false;
+  registroRepetido = false;
 
   eventoActual: any = {
     nombre: '',
@@ -69,9 +69,9 @@ export class EventoAgregarHijoComponent implements OnInit {
 
 
   findEvento(idEvento) {
-    const roles$ = this._eventoRestService
+    const eventos$ = this._eventoRestService
       .findEventoById(idEvento);
-    roles$
+    eventos$
       .subscribe(
         (evento: any) => {
           this.eventoActual = evento;
@@ -104,7 +104,9 @@ export class EventoAgregarHijoComponent implements OnInit {
       return;
     }
 
-    if(this.autosActuales.some((auto)=>{return auto.id===parseInt(this.f.auto.value)})){
+    if (this.autosActuales.some((auto) => {
+      return auto.id === parseInt(this.f.auto.value)
+    })) {
       this.registroRepetido = true;
     } else {
       this.registroRepetido = false;
@@ -115,9 +117,9 @@ export class EventoAgregarHijoComponent implements OnInit {
       };
       const crearEventoPorAuto$ = this._eventoRestService.createEventoPorAuto(eventoPorAuto);
       crearEventoPorAuto$.subscribe(
-        (eventoPorAuto)=>{
+        (eventoPorAuto) => {
           this.ngOnInit();
-        }, (error)=>{
+        }, (error) => {
           console.log(error)
         }
       )
@@ -126,41 +128,20 @@ export class EventoAgregarHijoComponent implements OnInit {
   }
 
   eliminarAuto(autoEliminado: Auto) {
-
-    console.log(autoEliminado);
-
-    if(this.autosDisponibles.some((auto)=>{return auto.id===autoEliminado.id})){
-      const autoEliminado$ = this._eventoRestService.eliminarAuto(Number(autoEliminado.id),this.eventoActual.id)
+    if (this.autosDisponibles.some((auto) => {
+      return auto.id === autoEliminado.id
+    })) {
+      const autoEliminado$ = this._eventoRestService.eliminarAuto(Number(autoEliminado.id), this.eventoActual.id)
       autoEliminado$.subscribe(
-        (auto)=>{
+        (auto) => {
           console.log(auto);
           this.ngOnInit();
         }, (error) => {
           console.log(error)
         }
       );
-
     } else {
       alert("Usted no puede eliminar ese auto")
     }
-
-    // const rolEliminado$ = this._usuarioRestService.eliminarRol(this.usuarioAActualizar.id, rol.id);
-    //
-    // rolEliminado$
-    //   .subscribe(
-    //     (rolEliminado) => {
-    //       console.log('Se elimino:', rolEliminado);
-    //
-    //       const indice = this.rolesDeUsuario
-    //         .findIndex((r) => r.id === rol.id);
-    //
-    //       this.rolesDeUsuario.splice(indice, 1);
-    //
-    //     },
-    //     (error) => {
-    //       console.error('Error', error);
-    //     }
-    //   );
   }
-
 }
