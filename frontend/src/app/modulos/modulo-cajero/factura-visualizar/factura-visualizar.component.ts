@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {FacturaCabecera} from "../../../interfaces/factura";
 import {FacturaRestService} from "../../../servicios/rest/factura-rest.service";
@@ -10,15 +10,16 @@ import {FacturaRestService} from "../../../servicios/rest/factura-rest.service";
 })
 export class FacturaVisualizarComponent implements OnInit {
 
-  facturas: FacturaCabecera;
-  facturasAux: FacturaCabecera;
+  facturas: FacturaCabecera[];
+  facturasAux: FacturaCabecera[];
   elementoABuscar = '';
-  selected = 'estadoTodos';
+  selected = '';
 
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _facturaRestService: FacturaRestService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     const rutaActiva$ = this._activatedRoute.params;
@@ -28,14 +29,30 @@ export class FacturaVisualizarComponent implements OnInit {
           const facturas$ = this._facturaRestService.findAllFacturas();
           facturas$.subscribe(
             (facturas) => {
-              this.facturas = facturas.filter(factura=>{
+              this.facturas = facturas.filter(factura => {
                 return factura.evento.id == parametros.idEvento;
               });
               this.facturasAux = this.facturas;
-              console.log(this.facturas);
             }
           );
         }
       );
   }
+
+  buscar() {
+    if (this.elementoABuscar != "") {
+      this.facturas = this.facturasAux.filter(factura => {
+        return factura.cliente.nombre.toLowerCase().includes(this.elementoABuscar.toLowerCase())
+      })
+    } else {
+      this.facturas = this.facturasAux;
+    }
+  }
+
+  filtrar() {
+    this.facturas = this.facturasAux.filter(factura => {
+      return factura.estado.toLowerCase().includes(this.selected.toLowerCase())
+    })
+  }
+
 }

@@ -14,10 +14,10 @@
     <div>
       <h4>Filtar por estado</h4>
       <mat-form-field>
-        <mat-select [(value)]="selected">
-          <mat-option value="estadoTodos">Todos</mat-option>
-          <mat-option value="estadoCompra">En compra</mat-option>
-          <mat-option value="estadoPagado">Pagados</mat-option>
+        <mat-select (selectionChange)="filtrar()" [(value)]="selected">
+          <mat-option value="">Todos</mat-option>
+          <mat-option value="En Compra">En compra</mat-option>
+          <mat-option value="Pagado">Pagados</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -26,6 +26,7 @@
     <a >
       <button class="btn btn-success">Crear Factura</button>
     </a>
+    <br>
     <br>
     <table class="table table-bordered">
       <tr>
