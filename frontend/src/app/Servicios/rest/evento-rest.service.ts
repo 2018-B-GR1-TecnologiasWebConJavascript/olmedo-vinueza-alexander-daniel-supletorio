@@ -42,6 +42,12 @@ export class EventoRestService {
   }
 
   create(evento:Evento): Observable<Evento> {
+    if (!evento.latitud){
+      delete evento.latitud
+    }
+    if (!evento.longitud){
+      delete evento.longitud
+    }
     const url = environment.url + '/evento';
     return this._httpClient
       .post(url, evento)

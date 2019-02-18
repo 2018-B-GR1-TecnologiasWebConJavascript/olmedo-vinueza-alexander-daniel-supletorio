@@ -18,6 +18,7 @@ import {EventoActualizarComponent} from "./modulos/modulo-evento/evento-actualiz
 import {EventoVisualizarComponent} from "./modulos/modulo-evento/evento-visualizar/evento-visualizar.component";
 import {EventoVerAutoComponent} from "./modulos/modulo-evento/evento-ver-auto/evento-ver-auto.component";
 import {RutaHomeComponent} from "./rutas/ruta-home/ruta-home.component";
+import {RutaEventosComponent} from "./rutas/ruta-eventos/ruta-eventos.component";
 
 const routes: Routes = [
   {
@@ -48,6 +49,25 @@ const routes: Routes = [
       {
         path: 'gestion-usuarios/:idUsuario',
         component: RutaActualizarUsuarioComponent,
+      },
+    ]
+  },
+  {
+    path: 'eventos',
+    component: RutaEventosComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'lista',
+      },
+      {
+        path: 'lista',
+        component: EventoVerComponent,
+      },
+      {
+        path: 'crearEvento',
+        component: EventoCrearComponent,
       },
     ]
   },
@@ -83,29 +103,29 @@ const routes: Routes = [
       {
         path: 'actualizarAuto/:idAuto',
         component: AutoActualizarComponent,
-      },
-      {
-        path: 'gestionEvento',
-        component: EventoVerComponent,
-      },
-      {
-        path: 'crearEvento',
-        component: EventoCrearComponent,
-      },
-      {
-        path: 'actualizarEvento/:idEvento',
-        component: EventoActualizarComponent,
-      },
-      {
-        path: 'eventos',
-        component: EventoVisualizarComponent,
-        children: [
-          {
-            path: 'autos/:idEvento',
-            component: EventoVerAutoComponent
-          }
-        ]
-      }]
+      }],
+      // {
+      //   path: 'gestionEvento',
+      //   component: EventoVerComponent,
+      // },
+      // {
+      //   path: 'crearEvento',
+      //   component: EventoCrearComponent,
+      // },
+      // {
+      //   path: 'actualizarEvento/:idEvento',
+      //   component: EventoActualizarComponent,
+      // },
+      // {
+      //   path: 'eventos',
+      //   component: EventoVisualizarComponent,
+      //   children: [
+      //     {
+      //       path: 'autos/:idEvento',
+      //       component: EventoVerAutoComponent
+      //     }
+      //   ]
+      // }]
     //   {
     //     path: 'eventAuto',
     //     component: EventoAutoMainComponent,

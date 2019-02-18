@@ -22,7 +22,7 @@ export class EventoCrearComponent implements OnInit {
   crearEvento(evento: Evento) {
     const evento$ = this._eventoRest.create(evento);
     evento$.subscribe(
-      (even) => this._route.navigate((['/usuario/gestionEvento'])),
+      (even) => this._route.navigate((['/eventos'])),
       (error) => alert("Evento no a sido creado, verifique que el evento no exista")
     )
   }

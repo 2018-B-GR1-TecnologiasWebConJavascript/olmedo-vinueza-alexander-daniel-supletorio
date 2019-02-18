@@ -21,16 +21,18 @@
         </div>
         <div class="form-group">
           <label for="latitud">Latitud</label>
-          <input id="latitud" type="number" formControlName="latitud" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.latitud.errors }" />
+          <input id="latitud" type="number" min="-90" max="90" formControlName="latitud" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.latitud.errors }" />
           <div *ngIf="submitted && f.latitud.errors" class="invalid-feedback">
             <div *ngIf="f.latitud.errors.required">Este campo no puede estar vacío</div>
+            <div *ngIf="f.latitud.errors.min || f.latitud.errors.max">Debe estar entre -90 y 90</div>
           </div>
         </div>
         <div class="form-group">
           <label for="longitud">Longitud</label>
-          <input id="longitud" type="number" formControlName="longitud" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.longitud.errors }" />
+          <input id="longitud" type="number" min="-180" max="180" formControlName="longitud" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.longitud.errors }" />
           <div *ngIf="submitted && f.longitud.errors" class="invalid-feedback">
             <div *ngIf="f.longitud.errors.required">Este campo no puede estar vacío</div>
+            <div *ngIf="f.longitud.errors.min || f.longitud.errors.max">Debe estar entre -180 y 180</div>
           </div>
         </div>
         <div class="form-group">

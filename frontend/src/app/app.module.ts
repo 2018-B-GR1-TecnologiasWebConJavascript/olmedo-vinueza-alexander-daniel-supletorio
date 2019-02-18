@@ -40,6 +40,7 @@ import {EventoVerAutoComponent} from './modulos/modulo-evento/evento-ver-auto/ev
 import {ListaAutosComponent} from './componentes/lista-autos/lista-autos.component';
 import {RutaHomeComponent} from './rutas/ruta-home/ruta-home.component';
 import {MatSelectModule} from "@angular/material";
+import {RutaEventosComponent} from './rutas/ruta-eventos/ruta-eventos.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {MatSelectModule} from "@angular/material";
     EventoVisualizarComponent,
     EventoVerAutoComponent,
     ListaAutosComponent,
-    RutaHomeComponent
+    RutaHomeComponent,
+    RutaEventosComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 <br>
   <div>
-    <div>
-      <a routerLink="/usuario/crearEvento">
+    <div *ngIf="isUser">
+      <a routerLink="/eventos/crearEvento">
         <button class="btn btn-success" > Crear Evento</button>
       </a>
     </div>
@@ -12,18 +12,20 @@
           <h3>Eventos</h3>
         </tr>
         <tr>
-          <th> Nombre</th>
-          <th> Lugar </th>
-          <th> Fecha </th>
+          <th>Nombre</th>
+          <th>Fecha</th>
+          <th>Latitud</th>
+          <th>Longitud</th>
           <th>Accion</th>
         </tr>
         <tr *ngFor="let evento  of eventos">
           <td>{{evento.nombre}}</td>
-          <td>{{evento.lugar}}</td>
           <td>{{evento.fecha}}</td>
+          <td>{{evento.latitud}}</td>
+          <td>{{evento.longitud}}</td>
           <td>
-            <a [routerLink]="['/usuario','actualizarEvento',evento.id]">
-              <button>Actualizar</button>
+            <a *ngIf="isUser" [routerLink]="['/usuario','actualizarEvento',evento.id]">
+              <button>Añadir autos al evento</button>
             </a>
           </td>
         </tr>

@@ -6,6 +6,7 @@
     <a class="nav-item nav-link" *ngIf="isUser" routerLink="/usuario">Usuario</a>
     <a class="nav-item nav-link" *ngIf="isCashier">Cajero</a>
     <a class="nav-item nav-link" *ngIf="isClient">Cliente</a>
+    <a class="nav-item nav-link" routerLink="/eventos">Eventos</a>
     <a class="nav-item nav-link" *ngIf="!usuarioActual" routerLink="/login">Login</a>
     <a class="nav-item nav-link" *ngIf="usuarioActual" (click)="logout()">Logout</a>
   </div>

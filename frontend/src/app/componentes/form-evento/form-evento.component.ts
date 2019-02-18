@@ -41,8 +41,14 @@ export class FormEventoComponent implements OnInit {
       fecha: ['', [
         Validators.required
       ]],
-      latitud: new FormControl(),
-      longitud: new FormControl(),
+      latitud: ['', [
+        Validators.min(-90),
+        Validators.max(90)
+      ]],
+      longitud: ['', [
+        Validators.min(-180),
+        Validators.max(180)
+      ]],
     });
   }
 
