@@ -121,7 +121,7 @@ export class FacturaGestionarComponent implements OnInit {
     if (this.facturaCabeceraForm.invalid) {
       return;
     }
-    if (this.facturaActual){
+    if (this.facturaActual) {
       let facturaCabecera: FacturaCabecera = {
         id: this.facturaActual.id,
         cliente: <string>this.f.nombre.value,
@@ -141,10 +141,10 @@ export class FacturaGestionarComponent implements OnInit {
       factura$.subscribe(
         (facturaCabecera) => {
           this.facturaActual = facturaCabecera;
-          if(this.botonGuardar){
+          if (this.botonGuardar) {
             alert("Cabecera guardada exitosamente")
           }
-          this.botonGuardar=true;
+          this.botonGuardar = true;
         },
         (error) => {
           console.log(error);
@@ -179,9 +179,20 @@ export class FacturaGestionarComponent implements OnInit {
         }
       )
     }
-
-
-
   }
 
+  eliminarDetalle(idFacturadetalle){
+    const facturaDetalle$ = this._facturaRestService.deleteFacturaDetalle(idFacturadetalle);
+    facturaDetalle$.subscribe(
+      (facturaDetalle) => {
+        console.log(facturaDetalle)
+        this.botonGuardar=false;
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log(error);
+        alert("No se ha podido eliminar el detalle")
+      }
+    )
+  }
 }
