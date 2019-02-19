@@ -21,6 +21,7 @@ import {EventoVerAutosComponent} from "./modulos/modulo-evento/evento-ver-autos/
 import {FacturaVisualizarComponent} from "./modulos/modulo-cajero/factura-visualizar/factura-visualizar.component";
 import {FacturaGestionarComponent} from "./modulos/modulo-cajero/factura-gestionar/factura-gestionar.component";
 import {FacturaAnadirItemComponent} from "./modulos/modulo-cajero/factura-anadir-item/factura-anadir-item.component";
+import {FacturasClienteComponent} from "./modulos/modulo-cliente/facturas-cliente/facturas-cliente.component";
 
 const routes: Routes = [
   {
@@ -125,49 +126,11 @@ const routes: Routes = [
       {
         path: 'actualizarAuto/:idAuto',
         component: AutoActualizarComponent,
-      }],
-      // {
-      //   path: 'gestionEvento',
-      //   component: EventoVerComponent,
-      // },
-      // {
-      //   path: 'crearEvento',
-      //   component: EventoCrearComponent,
-      // },
-      // {
-      //   path: 'actualizarEvento/:idEvento',
-      //   component: EventoActualizarComponent,
-      // },
-      // {
-      //   path: 'eventos',
-      //   component: EventoVisualizarComponent,
-      //   children: [
-      //     {
-      //       path: 'autos/:idEvento',
-      //       component: EventoVerAutoComponent
-      //     }
-      //   ]
-      // }]
-    //   {
-    //     path: 'eventAuto',
-    //     component: EventoAutoMainComponent,
-    //     children:[
-    //       {
-    //         path: '',
-    //         pathMatch: 'full',
-    //         redirectTo: 'EventoAuto'
-    //       },
-    //       {
-    //         path: 'EventoAuto',
-    //         component: EventoAutoVisualizarComponent
-    //       },
-    //       {
-    //         path: 'AgregarEventoAutoo',
-    //         component: EventoAutoAgregarComponent
-    //       }
-    //     ]
-    //   }
-    // ]
+      }
+    ]},
+  {
+    path: 'cliente',
+    component: FacturasClienteComponent,
   },
   // otherwise redirect to home
   {path: '**', redirectTo: ''}

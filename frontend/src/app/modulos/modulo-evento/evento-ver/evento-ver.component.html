@@ -39,7 +39,7 @@
           <a *ngIf="isUser" [routerLink]="['/eventos','agregarHijos',evento.id]">
             <button class="btn btn-info">Añadir autos</button>
           </a>
-          <a *ngIf="isCashier || isClient" [routerLink]="['/eventos','listaFacturas',evento.id]">
+          <a *ngIf="isCashier" [routerLink]="['/eventos','listaFacturas',evento.id]">
             <button class="btn btn-warning">Gestionar Facturas</button>
           </a>
         </td>

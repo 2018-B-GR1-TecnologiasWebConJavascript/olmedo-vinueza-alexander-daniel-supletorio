@@ -43,6 +43,7 @@ import {EventoVerAutosComponent} from './modulos/modulo-evento/evento-ver-autos/
 import {FacturaVisualizarComponent} from './modulos/modulo-cajero/factura-visualizar/factura-visualizar.component';
 import { FacturaGestionarComponent } from './modulos/modulo-cajero/factura-gestionar/factura-gestionar.component';
 import { FacturaAnadirItemComponent } from './modulos/modulo-cajero/factura-anadir-item/factura-anadir-item.component';
+import { FacturasClienteComponent } from './modulos/modulo-cliente/facturas-cliente/facturas-cliente.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { FacturaAnadirItemComponent } from './modulos/modulo-cajero/factura-anad
     EventoVerAutosComponent,
     FacturaVisualizarComponent,
     FacturaGestionarComponent,
-    FacturaAnadirItemComponent
+    FacturaAnadirItemComponent,
+    FacturasClienteComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,44 @@
+<div class="container">
+  <a class="nav-item nav-link" routerLink="/eventos">Regresar</a>
+  <h2>Lista de Facturas</h2>
+  <br>
+  <div>
+    <div>
+      <h4>Filtar por estado</h4>
+      <mat-form-field>
+        <mat-select (selectionChange)="filtrar()" [(value)]="selected">
+          <mat-option value="">Todos</mat-option>
+          <mat-option value="En Compra">En compra</mat-option>
+          <mat-option value="Pagado">Pagados</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <br>
+    <br>
+    <a *ngIf="isCashier" routerLink="/eventos/gestionarFactura">
+      <button (click)="vaciarFactura()" class="btn btn-success">Crear Factura</button>
+    </a>
+    <br>
+    <br>
+    <table class="table table-bordered">
+      <tr>
+        <th>Nombre Cliente</th>
+        <th>Fecha</th>
+        <th>Total</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+      <tr *ngFor="let factura  of facturas">
+        <td>{{factura.cliente.nombre}}</td>
+        <td>{{factura.fecha}}</td>
+        <td>{{factura.total}}</td>
+        <td>{{factura.estado}}</td>
+        <td>
+          <a>
+            <button class="btn btn-warning" (click)="gestionar(factura)">Gestionar</button>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
