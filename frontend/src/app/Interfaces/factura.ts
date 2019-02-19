@@ -1,4 +1,5 @@
 export interface FacturaCabecera {
+  id?: number;
   cliente?: any;
   cedula_o_ruc: number;
   telefono: number;

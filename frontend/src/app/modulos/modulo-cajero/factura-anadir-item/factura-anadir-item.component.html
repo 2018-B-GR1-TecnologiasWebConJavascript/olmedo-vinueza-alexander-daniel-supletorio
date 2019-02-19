@@ -1,3 +1,27 @@
-<p>
-  factura-anadir-item works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <h4>Autos en Evento</h4>
+      <br>
+      <mat-form-field>
+        <mat-select class="ui-fluid" (selectionChange)="actualizar()" [(value)]="autoSelected">
+          <mat-option *ngFor="let eventoAuto of eventosPorAuto" [value]="eventoAuto">{{eventoAuto.auto_id.chasis}} {{eventoAuto.auto_id.nombreMarca}} {{eventoAuto.auto_id.nombreModelo}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <br>
+      <div class="form-group">
+        <label for="precioAcordado">Precio acordado</label>
+        <input type="number" class="form-control" id="precioAcordado" [(ngModel)]="precioAcordado">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="cantidad">Cantidad</label>
+        <input type="number" class="form-control" id="cantidad" [(ngModel)]="cantidad">
+      </div>
+      <br>
+      <button (click)="anadirEvento()" class="btn btn-primary btn-block">Añadir Item</button>
+
+    </div>
+  </div>
+</div>
