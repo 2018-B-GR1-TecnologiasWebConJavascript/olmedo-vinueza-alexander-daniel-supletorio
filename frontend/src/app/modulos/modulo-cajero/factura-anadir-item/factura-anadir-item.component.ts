@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormGroup} from "@angular/forms";
 import {EventoRestService} from "../../../servicios/rest/evento-rest.service";
 import {Roles} from "../../../interfaces/Roles";
 import {FacturaRestService} from "../../../servicios/rest/factura-rest.service";
+import {FacturaDetalle} from "../../../interfaces/facturadetalle";
 
 @Component({
   selector: 'app-factura-anadir-item',
@@ -16,11 +17,13 @@ export class FacturaAnadirItemComponent implements OnInit {
   autoSelected;
   precioAcordado=0;
   cantidad=0;
+  facturaId;
 
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _eventoRestService: EventoRestService,
     private readonly _facturaRestService: FacturaRestService,
+    private readonly _router: Router,
   ) { }
 
   ngOnInit() {
@@ -28,7 +31,7 @@ export class FacturaAnadirItemComponent implements OnInit {
     rutaActiva$
       .subscribe(
         (parametros) => {
-          console.log(parametros.idFactura);
+          this.facturaId=parametros.idFactura;
         }
       );
     const eventosPorAuto = this._eventoRestService.findAllEventoPorAuto();
@@ -46,6 +49,21 @@ export class FacturaAnadirItemComponent implements OnInit {
   }
 
   anadirEvento(){
+    let facturaDetalle: FacturaDetalle = {
+      cantidad: this.cantidad,
+      precio: this.precioAcordado,
+      total: this.cantidad * this.precioAcordado,
+      factura_cabecera: this.facturaId,
+      evento_por_auto: this.autoSelected.id
+    };
+    const crearDetalle$ = this._facturaRestService.createFacturaDetalle(facturaDetalle);
+    crearDetalle$.subscribe(
+      (facturaDetalle)=>{
+        console.log(facturaDetalle)
+        this._router.navigate(["eventos/gestionarFactura"])
+      },(error => console.log(error))
+      )
+
 
   }
 

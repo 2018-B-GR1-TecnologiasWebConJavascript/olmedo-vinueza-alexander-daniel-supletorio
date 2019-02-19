@@ -7,12 +7,10 @@ module.exports = {
     },
     precio:{
       type: 'number',
-      isInteger: true,
       required: true
     },
     total:{
       type: 'number',
-      isInteger: true,
       required: true
     },
     factura_cabecera:{

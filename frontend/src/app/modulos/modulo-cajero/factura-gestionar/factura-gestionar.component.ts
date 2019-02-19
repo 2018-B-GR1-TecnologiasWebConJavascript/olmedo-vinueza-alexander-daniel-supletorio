@@ -89,7 +89,6 @@ export class FacturaGestionarComponent implements OnInit {
   }
 
   anadirItem(){
-    console.log(this.facturaActual);
     if(this.facturaActual){
       this._router.navigate((['/eventos/anadirItem/'+this.facturaActual.id]))
     } else {
@@ -119,7 +118,7 @@ export class FacturaGestionarComponent implements OnInit {
     };
 
 
-    const factura$ = this._facturaRestService.create(facturaCabecera);
+    const factura$ = this._facturaRestService.createFacturaCabecera(facturaCabecera);
     factura$.subscribe(
       (facturaCabecera) => {
         this.facturaActual = facturaCabecera

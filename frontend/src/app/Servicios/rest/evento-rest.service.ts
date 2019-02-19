@@ -24,6 +24,13 @@ export class EventoRestService {
     return eventos$;
   }
 
+  findAllEventoPorAuto(){
+    const eventoPorAuto$ = this._httpClient
+      .get(environment.url + "/eventoporauto")
+      .pipe(map(e => <any[]> e));
+    return eventoPorAuto$;
+  }
+
   findEventoById(id: number | string):Observable<any>{
     const eventos$ = this._httpClient
       .get(environment.url + this.nombreModelo + `/${id}` )
