@@ -16,7 +16,7 @@ export class FacturaAnadirItemComponent implements OnInit {
   eventosPorAuto: any;
   eventoPorAutoSelected;
   precioAcordado=0;
-  cantidad=0;
+  cantidad=1;
   facturaId;
 
   constructor(

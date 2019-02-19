@@ -94,6 +94,7 @@ export class FacturaGestionarComponent implements OnInit {
             return acumulador + valorActual.total
           }, valorInicial);
           this.facturaCabeceraForm.get('total').setValue(totalSuma);
+          this.onSubmit();
         }, (error) => {
           console.log(error)
         }
@@ -120,7 +121,33 @@ export class FacturaGestionarComponent implements OnInit {
       return;
     }
     if (this.facturaActual){
-      console.log("factura Actualizada")
+      let facturaCabecera: FacturaCabecera = {
+        id: this.facturaActual.id,
+        cliente: <string>this.f.nombre.value,
+        cedula_o_ruc: <number>this.f.cedula_o_ruc.value,
+        telefono: <number>this.f.telefono.value,
+        correo_electronico: <string>this.f.correo_electronico.value,
+        fecha: <string>this.f.fecha.value,
+        direccion: <string>this.f.direccion.value,
+        estado: <string>this.f.estado.value,
+        tipo_pago: <string>this.f.tipo_pago.value,
+        total: <number>this.f.total.value,
+        cajero: this._authService.currentUserValue.id,
+        evento: this._facturaRestService.eventoActualId
+      };
+
+      const factura$ = this._facturaRestService.updateFacturaCabecera(facturaCabecera);
+      factura$.subscribe(
+        (facturaCabecera) => {
+          this.facturaActual = facturaCabecera;
+          alert("Cabecera actualizada exitosamente")
+        },
+        (error) => {
+          console.log(error);
+          alert("No se ha podido actualizar la factura")
+        }
+      )
+
     } else {
       let facturaCabecera: FacturaCabecera = {
         cliente: <string>this.f.nombre.value,

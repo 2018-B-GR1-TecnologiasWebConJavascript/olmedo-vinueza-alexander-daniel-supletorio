@@ -17,7 +17,7 @@
       <br>
       <div class="form-group">
         <label for="cantidad">Cantidad</label>
-        <input type="number" class="form-control" id="cantidad" [(ngModel)]="cantidad">
+        <input type="number" min=1 class="form-control" id="cantidad" [(ngModel)]="cantidad">
       </div>
       <br>
       <button (click)="anadirEvento()" class="btn btn-primary btn-block">Añadir Item</button>
