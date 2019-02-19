@@ -28,6 +28,7 @@ export class FacturaVisualizarComponent implements OnInit {
     rutaActiva$
       .subscribe(
         (parametros) => {
+          this._facturaRestService.eventoActualId = parametros.idEvento;
           const facturas$ = this._facturaRestService.findAllFacturas();
           facturas$.subscribe(
             (facturas) => {

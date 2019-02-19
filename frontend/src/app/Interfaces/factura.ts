@@ -10,4 +10,5 @@ export interface FacturaCabecera {
   estado: string;
   factura_detalles?: any;
   cajero?: any;
+  evento?: any;
 }
