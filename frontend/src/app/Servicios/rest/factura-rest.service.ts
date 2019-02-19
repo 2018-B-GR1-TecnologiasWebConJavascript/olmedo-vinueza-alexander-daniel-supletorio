@@ -14,6 +14,7 @@ export class FacturaRestService {
 
   eventoActualId: number;
   facturaActual: any;
+  esCliente=false;
 
   nombreModelo: String = '/facturacabecera';
 

@@ -34,6 +34,7 @@ export class FacturaGestionarComponent implements OnInit {
 
   ngOnInit() {
     this.facturaActual = this._facturaRestService.facturaActual;
+    console.log(this.facturaActual);
     this.submitted = false;
     const clientes$ = this._usuarioRestService.findAll();
     clientes$.subscribe(
@@ -76,7 +77,9 @@ export class FacturaGestionarComponent implements OnInit {
     this.facturaCabeceraForm.get('total').setValue(0.0);
 
     if (this.facturaActual) {
-      if(this._facturaRestService.esCliente==true||this.facturaActual.estado=="Pagado"){
+      console.log(this._facturaRestService.esCliente);
+      console.log(this.facturaActual.estado=="Pagado");
+      if(this._facturaRestService.esCliente||this.facturaActual.estado=="Pagado"){
         this.readonly = true;
         this.facturaCabeceraForm.get('nombre').disable();
         this.facturaCabeceraForm.get('tipo_pago').disable()
@@ -115,6 +118,7 @@ export class FacturaGestionarComponent implements OnInit {
 
   anadirItem() {
     if (this.facturaActual) {
+      this._facturaRestService.esCliente=false;
       this._router.navigate((['/eventos/anadirItem/' + this.facturaActual.id]))
     } else {
       alert('Primero debe guardar los datos de la factura')
@@ -177,6 +181,7 @@ export class FacturaGestionarComponent implements OnInit {
       factura$.subscribe(
         (facturaCabecera) => {
           this.facturaActual = facturaCabecera;
+          this._facturaRestService.facturaActual = facturaCabecera;
           alert("Cabecera creada exitosamente")
         },
         (error) => {
