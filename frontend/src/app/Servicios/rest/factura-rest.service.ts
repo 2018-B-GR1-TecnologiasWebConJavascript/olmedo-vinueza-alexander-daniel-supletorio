@@ -57,4 +57,11 @@ export class FacturaRestService {
       .post(url, facturaDetalle)
       .pipe(map(r => <FacturaDetalle>r)); // Castear
   }
+
+  deleteFacturaDetalle(idFacturaDetalle: number): Observable<FacturaDetalle> {
+    const url = environment.url + '/facturadetalle/' + idFacturaDetalle;
+    return this._httpClient
+      .delete(url)
+      .pipe(map(r => <FacturaDetalle>r)); // Castear
+  }
 }

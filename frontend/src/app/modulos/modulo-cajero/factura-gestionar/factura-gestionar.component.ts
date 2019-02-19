@@ -195,4 +195,34 @@ export class FacturaGestionarComponent implements OnInit {
       }
     )
   }
+
+  pagarFactura(){
+    let facturaCabecera: FacturaCabecera = {
+      id: this.facturaActual.id,
+      cliente: <string>this.f.nombre.value,
+      cedula_o_ruc: <number>this.f.cedula_o_ruc.value,
+      telefono: <number>this.f.telefono.value,
+      correo_electronico: <string>this.f.correo_electronico.value,
+      fecha: <string>this.f.fecha.value,
+      direccion: <string>this.f.direccion.value,
+      estado: "Pagado",
+      tipo_pago: <string>this.f.tipo_pago.value,
+      total: <number>this.f.total.value,
+      cajero: this._authService.currentUserValue.id,
+      evento: this._facturaRestService.eventoActualId
+    };
+
+    const factura$ = this._facturaRestService.updateFacturaCabecera(facturaCabecera);
+    factura$.subscribe(
+      (facturaCabecera) => {
+        this.facturaActual = facturaCabecera;
+         alert("Factura pagada exitosamente");
+         this._router.navigate(["eventos","listaFacturas",this._facturaRestService.eventoActualId])
+      },
+      (error) => {
+        console.log(error);
+        alert("No se ha podido pagar la factura")
+      }
+    );
+  }
 }
