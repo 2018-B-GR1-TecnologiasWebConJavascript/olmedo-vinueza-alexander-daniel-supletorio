@@ -55,6 +55,7 @@ export class FacturasClienteComponent implements OnInit {
 
   gestionar(factura: any) {
     this._facturaRestService.facturaActual = factura;
+    this._facturaRestService.esCliente = true;
     this._router.navigate((['/eventos/gestionarFactura']))
   }
 

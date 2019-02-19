@@ -65,11 +65,13 @@ export class FacturaVisualizarComponent implements OnInit {
 
   gestionar(factura: any) {
     this._facturaRestService.facturaActual = factura;
+    this._facturaRestService.esCliente = false;
     this._router.navigate((['/eventos/gestionarFactura']))
   }
 
   vaciarFactura() {
     this._facturaRestService.facturaActual = undefined;
+    this._facturaRestService.esCliente = true;
   }
 
   get isCashier() {

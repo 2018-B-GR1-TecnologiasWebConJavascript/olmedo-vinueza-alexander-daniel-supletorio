@@ -76,10 +76,10 @@ export class FacturaGestionarComponent implements OnInit {
     this.facturaCabeceraForm.get('total').setValue(0.0);
 
     if (this.facturaActual) {
-      if(this.facturaActual.estado=="Pagado"){
+      if(this._facturaRestService.esCliente==true||this.facturaActual.estado=="Pagado"){
         this.readonly = true;
         this.facturaCabeceraForm.get('nombre').disable();
-        this.facturaCabeceraForm.get('tipo_pago').disable();
+        this.facturaCabeceraForm.get('tipo_pago').disable()
       }
       this.facturaCabeceraForm.get('nombre').setValue(this.facturaActual.cliente.id);
       this.facturaCabeceraForm.get('cedula_o_ruc').setValue(this.facturaActual.cedula_o_ruc);
