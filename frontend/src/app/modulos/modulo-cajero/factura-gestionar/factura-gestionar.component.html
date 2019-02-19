@@ -1,82 +1,108 @@
 <div class="container">
-  <h3>DATOS CLIENTE</h3>
-  <br>
-  <div class="row">
-    <div class="col">
-      <form>
+  <form [formGroup]="facturaCabeceraForm" (ngSubmit)="onSubmit()">
+    <h3>DATOS CLIENTE</h3>
+    <br>
+    <div class="row">
+      <div class="col">
         <div class="form-group row">
           <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="nombre">
+            <select class="form-control" id="nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+              <option *ngFor="let cliente of listaClientes" [value]="cliente.id">{{cliente.nombre}}</option>
+            </select>
+            <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+              <div *ngIf="f.nombre.errors.required">Este campo no puede estar vacío</div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label for="cedula_o_ruc" class="col-sm-3 col-form-label">Cédula o RUC</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="cedula_o_ruc">
+            <input type="text" formControlName="cedula_o_ruc" class="form-control" id="cedula_o_ruc" [ngClass]="{ 'is-invalid': submitted && f.cedula_o_ruc.errors }">
+            <div *ngIf="submitted && f.cedula_o_ruc.errors" class="invalid-feedback">
+              <div *ngIf="f.cedula_o_ruc.errors.required">Este campo no puede estar vacío</div>
+              <div *ngIf="f.cedula_o_ruc.errors.pattern">Ingrese una cédula válida</div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label for="telefono" class="col-sm-3 col-form-label">Teléfono</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="telefono">
+            <input type="text" formControlName="telefono" class="form-control" id="telefono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }">
+            <div *ngIf="submitted && f.telefono.errors" class="invalid-feedback">
+              <div *ngIf="f.telefono.errors.required">Este campo no puede estar vacío</div>
+              <div *ngIf="f.telefono.errors.pattern">Ingrese solo números</div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label for="correo_electronico" class="col-sm-3 col-form-label">Correo Electrónico</label>
           <div class="col-sm-9">
-            <input type="email" class="form-control" id="correo_electronico">
+            <input type="email" formControlName="correo_electronico" class="form-control" id="correo_electronico" [ngClass]="{ 'is-invalid': submitted && f.correo_electronico.errors }">
+            <div *ngIf="submitted && f.correo_electronico.errors" class="invalid-feedback">
+              <div *ngIf="f.correo_electronico.errors.required">Este campo no puede estar vacío</div>
+              <div *ngIf="f.correo_electronico.errors.email">Ingrese un correo valido</div>
+            </div>
           </div>
         </div>
         <div class="form-group row">
           <label for="fecha" class="col-sm-3 col-form-label">Fecha</label>
           <div class="col-sm-9">
-            <input type="date" class="form-control" id="fecha">
+            <input type="date" formControlName="fecha" class="form-control" id="fecha" [ngClass]="{ 'is-invalid': submitted && f.fecha.errors }">
+            <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
+              <div *ngIf="f.fecha.errors.required">Este campo no puede estar vacío</div>
+            </div>
           </div>
         </div>
-      </form>
-    </div>
-    <div class="col">
-      <div class="form-group row">
-        <label for="direccion" class="col-sm-3 col-form-label">Direccion</label>
-        <div class="col-sm-9">
-          <textarea type="text" class="form-control" id="direccion"></textarea>
+      </div>
+      <div class="col">
+        <div class="form-group row">
+          <label for="direccion" class="col-sm-3 col-form-label">Direccion</label>
+          <div class="col-sm-9">
+            <textarea type="text" formControlName="direccion" class="form-control" id="direccion" [ngClass]="{ 'is-invalid': submitted && f.direccion.errors }"></textarea>
+            <div *ngIf="submitted && f.direccion.errors" class="invalid-feedback">
+              <div *ngIf="f.direccion.errors.required">Este campo no puede estar vacío</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="estado" class="col-sm-3 col-form-label">Estado</label>
+          <div class="col-sm-9">
+            <input type="text" formControlName="estado" readonly class="form-control" id="estado">
+          </div>
         </div>
       </div>
-      <div class="form-group row">
-        <label for="estado" class="col-sm-3 col-form-label">Estado</label>
-        <div class="col-sm-9">
-          <input type="text" readonly class="form-control" id="estado">
+    </div>
+    <h3>DATOS DE FACTURA</h3>
+    <br>
+    <div class="row">
+      <div class="col">
+        <div class="form-group row">
+          <label for="tipo_pago" class="col-sm-3 col-form-label">Tipo de Pago</label>
+          <div class="col-sm-9">
+            <select id="tipo_pago" formControlName="tipo_pago" class="custom-select" [ngClass]="{ 'is-invalid': submitted && f.tipo_pago.errors }">
+              <option value="Efectivo">Efectivo</option>
+              <option value="Tarjeta">Tarjeta</option>
+              <option value="Cheque">Cheque</option>
+            </select>
+            <div *ngIf="submitted && f.tipo_pago.errors" class="invalid-feedback">
+              <div *ngIf="f.tipo_pago.errors.required">Este campo no puede estar vacío</div>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="col">
+        <div class="form-group row">
+          <label for="total" class="col-sm-3 col-form-label">TOTAL</label>
+          <div class="col-sm-9">
+            <input type="number" formControlName="total" readonly value=0.00 class="form-control" id="total">
+          </div>
+        </div>
+        <button class="btn btn-primary" style="float: right" type="submit">Guardar Datos</button>
+      </div>
     </div>
-  </div>
+  </form>
   <br>
-  <h3>DATOS DE FACTURA</h3>
-  <br>
-  <div class="row">
-    <div class="col">
-      <div class="form-group row">
-        <label for="tipo_pago" class="col-sm-3 col-form-label">Tipo de Pago</label>
-        <div class="col-sm-9">
-          <select id="tipo_pago" class="custom-select">
-            <option value="Efectivo">Efectivo</option>
-            <option value="Tarjeta">Tarjeta</option>
-            <option value="Cheque">Cheque</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="form-group row">
-        <label for="total" class="col-sm-3 col-form-label">TOTAL</label>
-        <div class="col-sm-9">
-          <input type="text" readonly class="form-control" id="total">
-        </div>
-      </div>
-      <button class="btn btn-primary" style="float: right" type="submit">Guardar Datos</button>
-    </div>
-  </div>
   <br>
   <h3>DETALLE</h3>
   <br>
@@ -99,5 +125,4 @@
       </td>
     </tr>
   </table>
-
 </div>
