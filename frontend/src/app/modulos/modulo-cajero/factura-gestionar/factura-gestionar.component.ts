@@ -34,7 +34,6 @@ export class FacturaGestionarComponent implements OnInit {
 
   ngOnInit() {
     this.facturaActual = this._facturaRestService.facturaActual;
-    console.log(this.facturaActual);
     this.submitted = false;
     const clientes$ = this._usuarioRestService.findAll();
     clientes$.subscribe(
@@ -77,8 +76,6 @@ export class FacturaGestionarComponent implements OnInit {
     this.facturaCabeceraForm.get('total').setValue(0.0);
 
     if (this.facturaActual) {
-      console.log(this._facturaRestService.esCliente);
-      console.log(this.facturaActual.estado=="Pagado");
       if(this._facturaRestService.esCliente||this.facturaActual.estado=="Pagado"){
         this.readonly = true;
         this.facturaCabeceraForm.get('nombre').disable();
@@ -196,7 +193,6 @@ export class FacturaGestionarComponent implements OnInit {
     const facturaDetalle$ = this._facturaRestService.deleteFacturaDetalle(idFacturadetalle);
     facturaDetalle$.subscribe(
       (facturaDetalle) => {
-        console.log(facturaDetalle)
         this.botonGuardar=false;
         this.ngOnInit();
       },
