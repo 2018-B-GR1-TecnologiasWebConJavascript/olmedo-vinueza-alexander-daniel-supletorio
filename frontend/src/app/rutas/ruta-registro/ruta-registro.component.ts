@@ -60,10 +60,16 @@ export class RutaRegistroComponent implements OnInit {
       this.f.correo.value,
       this.f.password.value,
       this.f.fecha_nacimiento.value,
-    ).subscribe((data) => {
-        console.log(data);
-        alert('Usuario registrado correctamente');
-        this._router.navigate(['/login']);
+    ).subscribe((user) => {
+      this._usuarioRestService.asignarRol(user.id, 4)
+        .subscribe(
+          (rol) => {
+            alert('Usuario registrado correctamente');
+            this._router.navigate(['/login']);
+          }, (error) => {
+            console.log(error)
+          }
+        );
       },
       error => {
         this.loading = false;

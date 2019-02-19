@@ -6,6 +6,7 @@ import {Roles} from "../../../interfaces/Roles";
 import {AuthService} from "../../../servicios/rest/auth.service";
 import {FacturaRestService} from "../../../servicios/rest/factura-rest.service";
 import {Router} from "@angular/router";
+import {FacturaDetalle} from "../../../interfaces/facturadetalle";
 
 @Component({
   selector: 'app-factura-gestionar',
@@ -18,6 +19,7 @@ export class FacturaGestionarComponent implements OnInit {
   facturaActual: FacturaCabecera;
   listaClientes: any;
   submitted = false;
+  detallesActuales: FacturaDetalle;
 
   constructor(
     private readonly _formBuilder: FormBuilder,

@@ -99,7 +99,6 @@ export class RutaActualizarUsuarioComponent implements OnInit {
     roles$
       .subscribe(
         (roles: Rol[]) => {
-          console.log(roles);
           this.rolesDeUsuario = roles;
         },
         (error) => {
@@ -113,13 +112,9 @@ export class RutaActualizarUsuarioComponent implements OnInit {
     rolEliminado$
       .subscribe(
         (rolEliminado) => {
-          console.log('Se elimino:', rolEliminado);
-
           const indice = this.rolesDeUsuario
             .findIndex((r) => r.id === rol.id);
-
           this.rolesDeUsuario.splice(indice, 1);
-
         },
         (error) => {
           console.error('Error', error);
