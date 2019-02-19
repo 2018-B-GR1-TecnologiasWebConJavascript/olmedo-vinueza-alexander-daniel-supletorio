@@ -1,0 +1,103 @@
+<div class="container">
+  <h3>DATOS CLIENTE</h3>
+  <br>
+  <div class="row">
+    <div class="col">
+      <form>
+        <div class="form-group row">
+          <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="nombre">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="cedula_o_ruc" class="col-sm-3 col-form-label">Cédula o RUC</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="cedula_o_ruc">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="telefono" class="col-sm-3 col-form-label">Teléfono</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="telefono">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="correo_electronico" class="col-sm-3 col-form-label">Correo Electrónico</label>
+          <div class="col-sm-9">
+            <input type="email" class="form-control" id="correo_electronico">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="fecha" class="col-sm-3 col-form-label">Fecha</label>
+          <div class="col-sm-9">
+            <input type="date" class="form-control" id="fecha">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col">
+      <div class="form-group row">
+        <label for="direccion" class="col-sm-3 col-form-label">Direccion</label>
+        <div class="col-sm-9">
+          <textarea type="text" class="form-control" id="direccion"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="estado" class="col-sm-3 col-form-label">Estado</label>
+        <div class="col-sm-9">
+          <input type="text" readonly class="form-control" id="estado">
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <h3>DATOS DE FACTURA</h3>
+  <br>
+  <div class="row">
+    <div class="col">
+      <div class="form-group row">
+        <label for="tipo_pago" class="col-sm-3 col-form-label">Tipo de Pago</label>
+        <div class="col-sm-9">
+          <select id="tipo_pago" class="custom-select">
+            <option value="Efectivo">Efectivo</option>
+            <option value="Tarjeta">Tarjeta</option>
+            <option value="Cheque">Cheque</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group row">
+        <label for="total" class="col-sm-3 col-form-label">TOTAL</label>
+        <div class="col-sm-9">
+          <input type="text" readonly class="form-control" id="total">
+        </div>
+      </div>
+      <button class="btn btn-primary" style="float: right" type="submit">Guardar Datos</button>
+    </div>
+  </div>
+  <br>
+  <h3>DETALLE</h3>
+  <br>
+  <button class="btn btn-primary" style="float: right" type="submit">Añadir Item</button>
+  <table class="table table-bordered">
+    <tr>
+      <th>Item</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Total</th>
+      <th>Accion</th>
+    </tr>
+    <tr *ngFor="let detalle  of detalles">
+      <td>{{detalle.item}}</td>
+      <td>{{detalle.cantidad}}</td>
+      <td>{{detalle.precio}}</td>
+      <td>{{detalle.total}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="eliminarAuto(auto.id)">Eliminar</button>
+      </td>
+    </tr>
+  </table>
+
+</div>
