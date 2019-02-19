@@ -24,7 +24,7 @@
     </div>
     <br>
     <br>
-    <a routerLink="/eventos/gestionarFactura">
+    <a *ngIf="isCashier" routerLink="/eventos/gestionarFactura">
       <button (click)="vaciarFactura()" class="btn btn-success">Crear Factura</button>
     </a>
     <br>

@@ -3,6 +3,8 @@ import {ActivatedRoute, Router, RouterModule} from "@angular/router";
 import {FacturaCabecera} from "../../../interfaces/factura";
 import {FacturaRestService} from "../../../servicios/rest/factura-rest.service";
 import {AuthService} from "../../../servicios/rest/auth.service";
+import {Roles} from "../../../interfaces/Roles";
+import {Usuario} from "../../../interfaces/usuario";
 
 @Component({
   selector: 'app-factura-visualizar',
@@ -15,6 +17,7 @@ export class FacturaVisualizarComponent implements OnInit {
   facturasAux: FacturaCabecera[];
   elementoABuscar = '';
   selected = '';
+  usuarioActual: Usuario;
 
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
@@ -22,6 +25,7 @@ export class FacturaVisualizarComponent implements OnInit {
     private readonly _authService: AuthService,
     private readonly _router: Router,
   ) {
+    this._authService.usuarioActual.subscribe(x => this.usuarioActual = x);
   }
 
   ngOnInit() {
@@ -66,6 +70,13 @@ export class FacturaVisualizarComponent implements OnInit {
 
   vaciarFactura() {
     this._facturaRestService.facturaActual = undefined;
+  }
+
+  get isCashier() {
+    if(this.usuarioActual){
+      return this.usuarioActual.roles.some(rol=>rol.nombre===Roles.CAJERO)
+    } else
+      return false ;
   }
 
 }

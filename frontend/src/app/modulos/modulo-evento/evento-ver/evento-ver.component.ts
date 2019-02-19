@@ -47,6 +47,13 @@ export class EventoVerComponent implements OnInit {
       return false ;
   }
 
+  get isClient() {
+    if(this.usuarioActual){
+      return this.usuarioActual.roles.some(rol=>rol.nombre===Roles.CLIENTE)
+    } else
+      return false ;
+  }
+
   buscar() {
     if(this.elementoABuscar!=""){
       this.eventos = this.eventosAux.filter(evento =>{
