@@ -29,6 +29,13 @@ export class FacturaRestService {
     return facturas$;
   }
 
+  findAllFacturaDetalles(): Observable<FacturaDetalle[]> {
+    const facturaDetalles$ = this._httpClient
+      .get(environment.url + "/facturadetalle")
+      .pipe(map(e => <FacturaDetalle[]>e));
+    return facturaDetalles$;
+  }
+
   createFacturaCabecera(facturaCabecera: FacturaCabecera): Observable<FacturaCabecera> {
     const url = environment.url + '/facturacabecera';
     return this._httpClient

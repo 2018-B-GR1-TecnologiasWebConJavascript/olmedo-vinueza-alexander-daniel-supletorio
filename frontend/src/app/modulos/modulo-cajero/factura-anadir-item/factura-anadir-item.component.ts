@@ -14,7 +14,7 @@ import {FacturaDetalle} from "../../../interfaces/facturadetalle";
 export class FacturaAnadirItemComponent implements OnInit {
 
   eventosPorAuto: any;
-  autoSelected;
+  eventoPorAutoSelected;
   precioAcordado=0;
   cantidad=0;
   facturaId;
@@ -45,21 +45,22 @@ export class FacturaAnadirItemComponent implements OnInit {
   }
 
   actualizar(){
-    this.precioAcordado=this.autoSelected.precio_base;
+    this.precioAcordado=this.eventoPorAutoSelected.precio_base;
   }
 
   anadirEvento(){
     let facturaDetalle: FacturaDetalle = {
+      nombre: this.eventoPorAutoSelected.auto_id.nombreMarca + " " + this.eventoPorAutoSelected.auto_id.nombreModelo,
       cantidad: this.cantidad,
       precio: this.precioAcordado,
       total: this.cantidad * this.precioAcordado,
       factura_cabecera: this.facturaId,
-      evento_por_auto: this.autoSelected.id
+      evento_por_auto: this.eventoPorAutoSelected.id
     };
     const crearDetalle$ = this._facturaRestService.createFacturaDetalle(facturaDetalle);
     crearDetalle$.subscribe(
       (facturaDetalle)=>{
-        console.log(facturaDetalle)
+        console.log(facturaDetalle);
         this._router.navigate(["eventos/gestionarFactura"])
       },(error => console.log(error))
       )

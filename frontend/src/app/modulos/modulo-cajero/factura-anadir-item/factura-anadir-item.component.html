@@ -4,7 +4,7 @@
       <h4>Autos en Evento</h4>
       <br>
       <mat-form-field>
-        <mat-select class="ui-fluid" (selectionChange)="actualizar()" [(value)]="autoSelected">
+        <mat-select class="ui-fluid" (selectionChange)="actualizar()" [(value)]="eventoPorAutoSelected">
           <mat-option *ngFor="let eventoAuto of eventosPorAuto" [value]="eventoAuto">{{eventoAuto.auto_id.chasis}} {{eventoAuto.auto_id.nombreMarca}} {{eventoAuto.auto_id.nombreModelo}}</mat-option>
         </mat-select>
       </mat-form-field>

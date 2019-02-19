@@ -115,13 +115,13 @@
       <th>Total</th>
       <th>Accion</th>
     </tr>
-    <tr *ngFor="let detalle  of detalles">
-      <td>{{detalle.item}}</td>
+    <tr *ngFor="let detalle  of detallesActuales">
+      <td>{{detalle.nombre}}</td>
       <td>{{detalle.cantidad}}</td>
       <td>{{detalle.precio}}</td>
       <td>{{detalle.total}}</td>
       <td>
-        <button class="btn btn-danger" (click)="eliminarAuto(auto.id)">Eliminar</button>
+        <button class="btn btn-danger" (click)="eliminarDetalle(detalle.id)">Eliminar</button>
       </td>
     </tr>
   </table>

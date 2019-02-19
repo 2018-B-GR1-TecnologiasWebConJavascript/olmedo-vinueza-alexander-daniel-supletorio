@@ -1,5 +1,6 @@
 export interface FacturaDetalle {
   id?: number;
+  nombre: string;
   cantidad: number;
   precio: number;
   total: number;
