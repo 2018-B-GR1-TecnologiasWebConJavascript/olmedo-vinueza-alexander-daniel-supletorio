@@ -21,6 +21,7 @@ export class FacturaGestionarComponent implements OnInit {
   submitted = false;
   detallesActuales: FacturaDetalle[];
   botonGuardar = false;
+  readonly=false;
 
   constructor(
     private readonly _formBuilder: FormBuilder,
@@ -75,6 +76,9 @@ export class FacturaGestionarComponent implements OnInit {
     this.facturaCabeceraForm.get('total').setValue(0.0);
 
     if (this.facturaActual) {
+      if(this.facturaActual.estado=="Pagado"){
+        this.readonly = true
+      }
       this.facturaCabeceraForm.get('nombre').setValue(this.facturaActual.cliente.id);
       this.facturaCabeceraForm.get('cedula_o_ruc').setValue(this.facturaActual.cedula_o_ruc);
       this.facturaCabeceraForm.get('telefono').setValue(this.facturaActual.telefono);

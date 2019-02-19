@@ -7,7 +7,7 @@
         <div class="form-group row">
           <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
           <div class="col-sm-9">
-            <select class="form-control" id="nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+            <select class="form-control" [disabled]="readonly" id="nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
               <option *ngFor="let cliente of listaClientes" [value]="cliente.id">{{cliente.nombre}}</option>
             </select>
             <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
@@ -18,7 +18,7 @@
         <div class="form-group row">
           <label for="cedula_o_ruc" class="col-sm-3 col-form-label">Cédula o RUC</label>
           <div class="col-sm-9">
-            <input type="text" formControlName="cedula_o_ruc" class="form-control" id="cedula_o_ruc" [ngClass]="{ 'is-invalid': submitted && f.cedula_o_ruc.errors }">
+            <input type="text" [readOnly]="readonly" formControlName="cedula_o_ruc" class="form-control" id="cedula_o_ruc" [ngClass]="{ 'is-invalid': submitted && f.cedula_o_ruc.errors }">
             <div *ngIf="submitted && f.cedula_o_ruc.errors" class="invalid-feedback">
               <div *ngIf="f.cedula_o_ruc.errors.required">Este campo no puede estar vacío</div>
               <div *ngIf="f.cedula_o_ruc.errors.pattern">Ingrese una cédula válida</div>
@@ -28,7 +28,7 @@
         <div class="form-group row">
           <label for="telefono" class="col-sm-3 col-form-label">Teléfono</label>
           <div class="col-sm-9">
-            <input type="text" formControlName="telefono" class="form-control" id="telefono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }">
+            <input type="text" [readOnly]="readonly" formControlName="telefono" class="form-control" id="telefono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }">
             <div *ngIf="submitted && f.telefono.errors" class="invalid-feedback">
               <div *ngIf="f.telefono.errors.required">Este campo no puede estar vacío</div>
               <div *ngIf="f.telefono.errors.pattern">Ingrese solo números</div>
@@ -38,7 +38,7 @@
         <div class="form-group row">
           <label for="correo_electronico" class="col-sm-3 col-form-label">Correo Electrónico</label>
           <div class="col-sm-9">
-            <input type="email" formControlName="correo_electronico" class="form-control" id="correo_electronico" [ngClass]="{ 'is-invalid': submitted && f.correo_electronico.errors }">
+            <input type="email" [readOnly]="readonly" formControlName="correo_electronico" class="form-control" id="correo_electronico" [ngClass]="{ 'is-invalid': submitted && f.correo_electronico.errors }">
             <div *ngIf="submitted && f.correo_electronico.errors" class="invalid-feedback">
               <div *ngIf="f.correo_electronico.errors.required">Este campo no puede estar vacío</div>
               <div *ngIf="f.correo_electronico.errors.email">Ingrese un correo valido</div>
@@ -48,7 +48,7 @@
         <div class="form-group row">
           <label for="fecha" class="col-sm-3 col-form-label">Fecha</label>
           <div class="col-sm-9">
-            <input type="date" formControlName="fecha" class="form-control" id="fecha" [ngClass]="{ 'is-invalid': submitted && f.fecha.errors }">
+            <input type="date" [readOnly]="readonly" formControlName="fecha" class="form-control" id="fecha" [ngClass]="{ 'is-invalid': submitted && f.fecha.errors }">
             <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
               <div *ngIf="f.fecha.errors.required">Este campo no puede estar vacío</div>
             </div>
@@ -59,7 +59,7 @@
         <div class="form-group row">
           <label for="direccion" class="col-sm-3 col-form-label">Direccion</label>
           <div class="col-sm-9">
-            <textarea type="text" formControlName="direccion" class="form-control" id="direccion" [ngClass]="{ 'is-invalid': submitted && f.direccion.errors }"></textarea>
+            <textarea type="text" [readOnly]="readonly" formControlName="direccion" class="form-control" id="direccion" [ngClass]="{ 'is-invalid': submitted && f.direccion.errors }"></textarea>
             <div *ngIf="submitted && f.direccion.errors" class="invalid-feedback">
               <div *ngIf="f.direccion.errors.required">Este campo no puede estar vacío</div>
             </div>
@@ -80,7 +80,7 @@
         <div class="form-group row">
           <label for="tipo_pago" class="col-sm-3 col-form-label">Tipo de Pago</label>
           <div class="col-sm-9">
-            <select id="tipo_pago" formControlName="tipo_pago" class="custom-select" [ngClass]="{ 'is-invalid': submitted && f.tipo_pago.errors }">
+            <select id="tipo_pago" [disabled]="readonly" formControlName="tipo_pago" class="custom-select" [ngClass]="{ 'is-invalid': submitted && f.tipo_pago.errors }">
               <option value="Efectivo">Efectivo</option>
               <option value="Tarjeta">Tarjeta</option>
               <option value="Cheque">Cheque</option>
@@ -98,7 +98,7 @@
             <input type="number" formControlName="total" readonly value=0.00 class="form-control" id="total">
           </div>
         </div>
-        <button class="btn btn-primary" style="float: right" type="submit">Guardar Datos</button>
+        <button *ngIf="!readonly" class="btn btn-primary" style="float: right" type="submit">Guardar Datos</button>
       </div>
     </div>
   </form>
@@ -106,7 +106,7 @@
   <br>
   <h3>DETALLE</h3>
   <br>
-  <button class="btn btn-primary" style="float: right" (click)="anadirItem()">Añadir Item</button>
+  <button *ngIf="!readonly" class="btn btn-primary" style="float: right" (click)="anadirItem()">Añadir Item</button>
   <table class="table table-bordered">
     <tr>
       <th>Item</th>
@@ -121,9 +121,11 @@
       <td>{{detalle.precio}}</td>
       <td>{{detalle.total}}</td>
       <td>
-        <button class="btn btn-danger" (click)="eliminarDetalle(detalle.id)">Eliminar</button>
+        <button *ngIf="!readonly" class="btn btn-danger" (click)="eliminarDetalle(detalle.id)">Eliminar</button>
       </td>
     </tr>
   </table>
-  <button class="btn btn-primary" (click)="pagarFactura()">Pagar Factura</button>
+  <div *ngIf="!readonly">
+    <button *ngIf="detallesActuales" class="btn btn-primary" (click)="pagarFactura()">Pagar Factura</button>
+  </div>
 </div>
