@@ -1,4 +1,5 @@
 <div class="container">
+  <a class="nav-item nav-link" routerLink="/eventos">Regresar</a>
   <h2>Lista de Facturas</h2>
   <br>
   <div>
@@ -24,7 +25,7 @@
     <br>
     <br>
     <a routerLink="/eventos/gestionarFactura">
-      <button class="btn btn-success">Crear Factura</button>
+      <button (click)="vaciarFactura()" class="btn btn-success">Crear Factura</button>
     </a>
     <br>
     <br>
@@ -42,8 +43,8 @@
         <td>{{factura.total}}</td>
         <td>{{factura.estado}}</td>
         <td>
-          <a >
-            <button class="btn btn-warning" (click)="gestionar(factura)" >Gestionar</button>
+          <a>
+            <button class="btn btn-warning" (click)="gestionar(factura)">Gestionar</button>
           </a>
         </td>
       </tr>

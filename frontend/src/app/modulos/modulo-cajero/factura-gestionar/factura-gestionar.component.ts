@@ -5,7 +5,7 @@ import {UsuarioRestService} from "../../../servicios/rest/usuario-rest.service";
 import {Roles} from "../../../interfaces/Roles";
 import {AuthService} from "../../../servicios/rest/auth.service";
 import {FacturaRestService} from "../../../servicios/rest/factura-rest.service";
-import * as moment from "moment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-factura-gestionar',
@@ -24,12 +24,12 @@ export class FacturaGestionarComponent implements OnInit {
     private readonly _usuarioRestService: UsuarioRestService,
     private readonly _facturaRestService: FacturaRestService,
     private readonly _authService: AuthService,
+    private readonly _router: Router,
   ) {
   }
 
   ngOnInit() {
     this.facturaActual = this._facturaRestService.facturaActual;
-    console.log(this.facturaActual);
     this.submitted = false;
     const clientes$ = this._usuarioRestService.findAll();
     clientes$.subscribe(
@@ -86,6 +86,16 @@ export class FacturaGestionarComponent implements OnInit {
 
   get f() {
     return this.facturaCabeceraForm.controls;
+  }
+
+  anadirItem(){
+    console.log(this.facturaActual);
+    if(this.facturaActual){
+      this._router.navigate((['/eventos/anadirItem/'+this.facturaActual.id]))
+    } else {
+      alert('Primero debe guardar los datos de la factura')
+    }
+
   }
 
   onSubmit() {
