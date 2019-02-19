@@ -60,7 +60,6 @@ export class FacturaAnadirItemComponent implements OnInit {
     const crearDetalle$ = this._facturaRestService.createFacturaDetalle(facturaDetalle);
     crearDetalle$.subscribe(
       (facturaDetalle)=>{
-        console.log(facturaDetalle);
         this._router.navigate(["eventos/gestionarFactura"])
       },(error => console.log(error))
       )

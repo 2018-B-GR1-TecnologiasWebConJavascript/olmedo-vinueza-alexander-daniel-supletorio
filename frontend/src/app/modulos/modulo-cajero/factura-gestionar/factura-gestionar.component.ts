@@ -20,6 +20,7 @@ export class FacturaGestionarComponent implements OnInit {
   listaClientes: any;
   submitted = false;
   detallesActuales: FacturaDetalle[];
+  botonGuardar = false;
 
   constructor(
     private readonly _formBuilder: FormBuilder,
@@ -140,13 +141,16 @@ export class FacturaGestionarComponent implements OnInit {
       factura$.subscribe(
         (facturaCabecera) => {
           this.facturaActual = facturaCabecera;
-          alert("Cabecera actualizada exitosamente")
+          if(this.botonGuardar){
+            alert("Cabecera guardada exitosamente")
+          }
+          this.botonGuardar=true;
         },
         (error) => {
           console.log(error);
           alert("No se ha podido actualizar la factura")
         }
-      )
+      );
 
     } else {
       let facturaCabecera: FacturaCabecera = {

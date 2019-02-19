@@ -43,6 +43,14 @@ export class FacturaRestService {
       .pipe(map(r => <FacturaCabecera>r)); // Castear
   }
 
+  updateFacturaCabecera(facturaCabecera: FacturaCabecera): Observable<FacturaCabecera> {
+    const url = environment.url + '/facturacabecera/' + facturaCabecera.id;
+    delete facturaCabecera.id;
+    return this._httpClient
+      .patch(url, facturaCabecera)
+      .pipe(map(r => <FacturaCabecera>r)); // Castear
+  }
+
   createFacturaDetalle(facturaDetalle: FacturaDetalle): Observable<FacturaDetalle> {
     const url = environment.url + '/facturadetalle';
     return this._httpClient
