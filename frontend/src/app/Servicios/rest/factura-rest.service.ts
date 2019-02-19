@@ -12,6 +12,7 @@ import {Evento} from "../../interfaces/evento";
 export class FacturaRestService {
 
   eventoActualId: number;
+  facturaActual: any;
 
   nombreModelo: String = '/facturacabecera';
 

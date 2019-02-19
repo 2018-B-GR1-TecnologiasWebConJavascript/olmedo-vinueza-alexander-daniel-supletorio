@@ -42,6 +42,7 @@ import {EventoAgregarHijoComponent} from './modulos/modulo-evento/evento-agregar
 import {EventoVerAutosComponent} from './modulos/modulo-evento/evento-ver-autos/evento-ver-autos.component';
 import {FacturaVisualizarComponent} from './modulos/modulo-cajero/factura-visualizar/factura-visualizar.component';
 import { FacturaGestionarComponent } from './modulos/modulo-cajero/factura-gestionar/factura-gestionar.component';
+import { FacturaAnadirItemComponent } from './modulos/modulo-cajero/factura-anadir-item/factura-anadir-item.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { FacturaGestionarComponent } from './modulos/modulo-cajero/factura-gesti
     EventoAgregarHijoComponent,
     EventoVerAutosComponent,
     FacturaVisualizarComponent,
-    FacturaGestionarComponent
+    FacturaGestionarComponent,
+    FacturaAnadirItemComponent
   ],
   imports: [
     BrowserModule,

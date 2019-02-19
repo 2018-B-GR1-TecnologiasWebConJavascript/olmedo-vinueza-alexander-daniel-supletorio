@@ -5,6 +5,7 @@ import {UsuarioRestService} from "../../../servicios/rest/usuario-rest.service";
 import {Roles} from "../../../interfaces/Roles";
 import {AuthService} from "../../../servicios/rest/auth.service";
 import {FacturaRestService} from "../../../servicios/rest/factura-rest.service";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-factura-gestionar',
@@ -27,6 +28,8 @@ export class FacturaGestionarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.facturaActual = this._facturaRestService.facturaActual;
+    console.log(this.facturaActual);
     this.submitted = false;
     const clientes$ = this._usuarioRestService.findAll();
     clientes$.subscribe(
@@ -67,6 +70,18 @@ export class FacturaGestionarComponent implements OnInit {
     });
     this.facturaCabeceraForm.get('estado').setValue('En compra');
     this.facturaCabeceraForm.get('total').setValue(0.0);
+
+    if(this.facturaActual){
+      this.facturaCabeceraForm.get('nombre').setValue(this.facturaActual.cliente.id);
+      this.facturaCabeceraForm.get('cedula_o_ruc').setValue(this.facturaActual.cedula_o_ruc);
+      this.facturaCabeceraForm.get('telefono').setValue(this.facturaActual.telefono);
+      this.facturaCabeceraForm.get('correo_electronico').setValue(this.facturaActual.correo_electronico);
+      this.facturaCabeceraForm.get('fecha').setValue(this.facturaActual.fecha);
+      this.facturaCabeceraForm.get('direccion').setValue(this.facturaActual.direccion);
+      this.facturaCabeceraForm.get('estado').setValue(this.facturaActual.estado);
+      this.facturaCabeceraForm.get('tipo_pago').setValue(this.facturaActual.tipo_pago);
+      this.facturaCabeceraForm.get('total').setValue(this.facturaActual.total);
+    }
   }
 
   get f() {
