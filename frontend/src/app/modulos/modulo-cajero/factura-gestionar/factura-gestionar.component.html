@@ -7,7 +7,7 @@
         <div class="form-group row">
           <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
           <div class="col-sm-9">
-            <select class="form-control" [disabled]="readonly" id="nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+            <select class="form-control" id="nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
               <option *ngFor="let cliente of listaClientes" [value]="cliente.id">{{cliente.nombre}}</option>
             </select>
             <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
@@ -80,7 +80,7 @@
         <div class="form-group row">
           <label for="tipo_pago" class="col-sm-3 col-form-label">Tipo de Pago</label>
           <div class="col-sm-9">
-            <select id="tipo_pago" [disabled]="readonly" formControlName="tipo_pago" class="custom-select" [ngClass]="{ 'is-invalid': submitted && f.tipo_pago.errors }">
+            <select id="tipo_pago" formControlName="tipo_pago" class="custom-select" [ngClass]="{ 'is-invalid': submitted && f.tipo_pago.errors }">
               <option value="Efectivo">Efectivo</option>
               <option value="Tarjeta">Tarjeta</option>
               <option value="Cheque">Cheque</option>
